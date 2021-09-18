@@ -22,7 +22,7 @@ $.ajax(movieSettings).done(function (response) {
     results.push(response.movie_results[i].title)
     i++
   }
-  console.log("movie response:", response.movie_results[0].title);
+  console.log("movie response:", response);
 });
 
 
@@ -45,24 +45,24 @@ $.ajax(grocerySettings).done(function (response) {
     results.push(response.products[i].title)
     i++
   }
-	console.log("grocery response:", response.products[0].title);
+	console.log("grocery response:", response);
 });
 
-//amazon api
-const amazonSettings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://amazon24.p.rapidapi.com/api/product?keyword=iphone&country=CA&page=1",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "amazon24.p.rapidapi.com",
-		"x-rapidapi-key": "85cb3c3da5msh1736a5f390ea368p159ccejsn0b9cde09d29b"
-	}
-};
+// //amazon api
+// const amazonSettings = {
+// 	"async": true,
+// 	"crossDomain": true,
+// 	"url": "https://amazon24.p.rapidapi.com/api/product?keyword=iphone&country=CA&page=1",
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-host": "amazon24.p.rapidapi.com",
+// 		"x-rapidapi-key": "85cb3c3da5msh1736a5f390ea368p159ccejsn0b9cde09d29b"
+// 	}
+// };
 
-$.ajax(amazonSettings).done(function (response) {
-	console.log(response);
-});
+// $.ajax(amazonSettings).done(function (response) {
+// 	console.log(response);
+// });
 
 //yelp API
 const yelpSettings = {
@@ -78,7 +78,7 @@ $.ajax(yelpSettings).done(function (response) {
   businesses.forEach((business)=> {
    results.push(business.name)
   })
-	console.log("yelp response:", response.businesses);
+	console.log("yelp response:", response);
 });
 
 //google books api
@@ -97,7 +97,7 @@ $.ajax(bookSettings).done(function (response) {
     }
     i++
   }
-	console.log("books response:", response.items[0].volumeInfo.title);
+	console.log("books response:", response);
 });
 
 //wolfram api
