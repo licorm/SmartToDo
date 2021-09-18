@@ -1,5 +1,5 @@
 
-$document.ready(() => {
+$(() => {
 
 
   const settings = {
@@ -12,13 +12,14 @@ $document.ready(() => {
       "x-rapidapi-key": "85cb3c3da5msh1736a5f390ea368p159ccejsn0b9cde09d29b"
     }
   };
-  const fetchMovies = function() {
+
     $.ajax(settings).done(function (response) {
-      console.log(response);
+     //consoling the number of search results
+      console.log(response.search_results);
     });
-  }
-  fetchMovies();
-  module.exports = { fetchMovies };
+
+
+
 })
 
 
