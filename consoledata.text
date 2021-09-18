@@ -1,0 +1,81 @@
+Movie response
+{movie_results: Array(17), search_results: 17, status: 'OK', status_message: 'Query was successful'}
+movie_results: Array(17)
+0: {title: 'A Case of Eggs: Episode 2', year: 1974, imdb_id: 'tt0236085'}
+1: {title: 'Baby Looney Tunes: Eggs-traordinary Adventure', year: 2003, imdb_id: 'tt0381896'}
+2: {title: 'Bad Eggs', year: 2003, imdb_id: 'tt0312409'}
+0:
+imdb_id: "tt0236085"
+title: "A Case of Eggs: Episode 2"
+year: 1974
+
+Books response
+{kind: 'books#volumes', totalItems: 2371, items: Array(10)}
+items: Array(10)
+0: {kind: 'books#volume', id: 'evQvBAAAQBAJ', etag: 'Cgh/Jg6vuQ8}
+volumeInfo:
+allowAnonLogging: false
+authors: ['Mark E. Hauber']
+canonicalVolumeLink: "https://play.google.com/store/books/details?id=evQvBAAAQBAJ"
+contentVersion: "2.3.4.0.preview.3"
+description: "From the brilliantly green and glossy eggs of the Elegant Crested Tinamou—said to be among the most beautiful in the world—to the small brown eggs of the house sparrow that makes its nest in a lamppost and the uniformly brown or white chickens’ eggs found by the dozen in any corner grocery, birds’ eggs have inspired countless biologists, ecologists, and ornithologists, as well as artists, from John James Audubon to the contemporary photographer Rosamond Purcell. For scientists, these vibrant vessels are the source of an array of interesting topics, from the factors responsible for egg coloration to the curious practice of “brood parasitism,” in which the eggs of cuckoos mimic those of other bird species in order to be cunningly concealed among the clutches of unsuspecting foster parents. The Book of Eggs introduces readers to eggs from six hundred species—some endangered or extinct—from around the world and housed mostly at Chicago’s Field Museum of Natural History. Organized by habitat and taxonomy, the entries include newly commissioned photographs that reproduce each egg in full color and at actual size, as well as distribution maps and drawings and descriptions of the birds and their nests where the eggs are kept warm. Birds’ eggs are some of the most colorful and variable natural products in the wild, and each entry is also accompanied by a brief description that includes evolutionary explanations for the wide variety of colors and patterns, from camouflage designed to protect against predation, to thermoregulatory adaptations, to adjustments for the circumstances of a particular habitat or season. Throughout the book are fascinating facts to pique the curiosity of binocular-toting birdwatchers and budding amateurs alike. Female mallards, for instance, invest more energy to produce larger eggs when faced with the genetic windfall of an attractive mate. Some seabirds, like the cliff-dwelling guillemot, have adapted to produce long, pointed eggs, whose uneven weight distribution prevents them from rolling off rocky ledges into the sea. A visually stunning and scientifically engaging guide to six hundred of the most intriguing eggs, from the pea-sized progeny of the smallest of hummingbirds to the eggs of the largest living bird, the ostrich, which can weigh up to five pounds, The Book of Eggs offers readers a rare, up-close look at these remarkable forms of animal life."
+imageLinks: {smallThumbnail: 'http://books.google.com/books/content?id=evQvBAAAQ…=frontcover&img=1&zoom=5&edge=curl&source=gbs_api', thumbnail: 'http://books.google.com/books/content?id=evQvBAAAQ…=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
+infoLink: "https://play.google.com/store/books/details?id=evQvBAAAQBAJ&source=gbs_api"
+maturityRating: "NOT_MATURE"
+panelizationSummary: {containsEpubBubbles: false, containsImageBubbles: false}
+previewLink: "http://books.google.ca/books?id=evQvBAAAQBAJ&printsec=frontcover&dq=eggs&hl=&cd=1&source=gbs_api"
+publishedDate: "2014-08-01"
+publisher: "University of Chicago Press"
+readingModes: {text: true, image: true}
+subtitle: "A Life-Size Guide to the Eggs of Six Hundred of the World's Bird Species"
+title: "The Book of Eggs"
+
+grocery response:
+{type: 'product', products: Array(10), offset: 0, number: 10, totalProducts: 291, …}
+products: Array(10)
+0: {id: 7408, title: "Eggland's Best Hard-Cooked Peeled Eggs, Gra
+0:
+id: 7408
+image: "https://spoonacular.com/productImages/7408-312x231.jpeg"
+imageType: "jpeg"
+title: "Eggland's Best Hard-Cooked Peeled Eggs, Grade AA, 6 Count"
+
+yelp response: !!!! can use restaurant name includes for this one
+{businesses: Array(20), total: 470, region: {…}}
+businesses: Array(20)
+0: {id: 'iAhAnPxgKb6fzxrEcoHtlw', alias: 'oeb-breakfast-calgar
+0:
+alias: "oeb-breakfast-calgary-17"
+categories: [{…}]
+coordinates: {latitude: 51.048928772496346, longitude: -114.06578384490567}
+display_phone: "+1 587-352-3447"
+distance: 1112.5564221884174
+id: "iAhAnPxgKb6fzxrEcoHtlw"
+image_url: "https://s3-media2.fl.yelpcdn.com/bphoto/kzuZs2nVwWWCrjKM71Klug/o.jpg"
+is_closed: false
+location: {address1: '222 5 Avenue SW', address2: 'Suite 110', address3: null, city: 'Calgary', zip_code: 'T2P 4K3', …}
+name: "OEB Breakfast"
+phone: "+15873523447"
+price: "$$"
+rating: 4.5
+review_count: 227
+transactions: ['restaurant_reservation']
+url: "https://www.yelp.com/biz/oeb-breakfast-calgary-17?adjust_creative=DZjfHA51HIx669h9MCivrw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=DZjfHA51HIx669h9MCivrw"
+
+wolfram !!!! probably easiest to use datatypes
+queryresult:
+assumptions:
+count: 2
+template: "Assuming \"${word}\" is ${desc1}. Use as ${desc2} instead"
+type: "Clash"
+values: (2) [{…}, {…}]
+word: "undefined"
+[[Prototype]]: Object
+datatypes: "AdministrativeDivision,Book,Bridge,Building,City,Company,Country,GivenName,HistoricalPeriod,Internet,Lake,Mountain,Movie,Ocean,River,Surname,Translation,Word"
+error: false
+host: "https://www4f.wolframalpha.com"
+id: "MSP16821f7dhc50gbb5918f0000549fc3ae01321id3"
+inputstring: "undefined"
+numpods: 15
+parsetimedout: false
+parsetiming: 0.089
