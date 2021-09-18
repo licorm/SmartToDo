@@ -1,0 +1,6 @@
+-set up database
+-routes
+-html files
+-css
+-api
+-jquery
