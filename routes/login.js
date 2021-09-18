@@ -1,12 +1,17 @@
+const { response } = require('express');
 const express = require('express');
 const router  = express.Router();
-const loginQueries = require('../db/queries/login-queries');
 
-router.get('/:id', (req, res) => {
-  loginQueries.userLogin(req.params.id)
-    .then((user) => {
-      res.json(user);
-    })
-})
+const loginRouter = (db) => {
+  router.get('/:id', (req, res) => {
+    db.query("SELECT * FROM users WHERE id = $1", [req.params.id])
+      .then((response) => {
+        console.log(response.rows);
+        req.session.user_id = req.params.id;
+        res.redirect('/');
+      })
+  })
+  return router
+}
 
-module.exports = router;
+module.exports = loginRouter;
