@@ -53,6 +53,7 @@ $(() => {
 // 	console.log(response);
 // });
 
+//yelp API
 // const yelpSettings = {
 // 	"url": "https://api.yelp.com/v3/businesses/search?term=earls&location=calgary",
 // 	"method": "GET",
@@ -66,15 +67,32 @@ $(() => {
 // 	console.log(response);
 // });
 
-const bookSettings = {
-	"url": "https://www.googleapis.com/books/v1/volumes?q=harrypotter&projection=lite&key=AIzaSyDhEMfJfO2c0KBNRG5fF0RYVTwJottooPE",
+//google books api
+// const bookSettings = {
+// 	"url": "https://www.googleapis.com/books/v1/volumes?q=harrypotter&projection=lite&key=AIzaSyDhEMfJfO2c0KBNRG5fF0RYVTwJottooPE",
+// 	"method": "GET",
+// };
+
+// $.ajax(bookSettings).done(function (response) {
+//   console.log('it works')
+// 	console.log(response.items[0].volumeInfo.title);
+// });
+
+//wolfram api
+
+const search = "Harry Potter and the Philosophers Stone"
+
+const wolframSettings = {
+	"url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${search}`,
 	"method": "GET",
 };
 
-$.ajax(bookSettings).done(function (response) {
+$.ajax(wolframSettings).done(function (response) {
   console.log('it works')
-	console.log(response.items[0].volumeInfo.title);
+	console.log(response.queryresult.datatypes);
+  console.log(response.queryresult.assumptions.values[0].name);
 });
+
 
 
 
