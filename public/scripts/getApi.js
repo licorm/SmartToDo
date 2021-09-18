@@ -80,7 +80,7 @@ $(() => {
 
 //wolfram api
 
-const search = "Harry Potter and the Philosophers Stone"
+const search = ""
 
 const wolframSettings = {
 	"url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${search}`,
