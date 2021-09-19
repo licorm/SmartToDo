@@ -1,8 +1,91 @@
 
 $(() => {
 
-const queryText = 'Desk'
+const queryText = 'Cactus Club'
 const results = [];
+
+//yelp API
+const yelpSettings = {
+	"url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
+	"method": "GET",
+	"headers": {
+		"Authorization": "Bearer nxBY2qRdQtx6tQSmpDNElKsuUINdEi_aI_4RDjjvqs3lbzGmgMem__btNaNnT2ruHn28UmFZ1W6Z9zrmjpw0rmyyaEuwGGMc-GSVXD6Q_ffREboy1bP4Po1S6AdGYXYx"
+	}
+};
+
+ const restaurantResults = [];
+
+$.ajax(yelpSettings).done(function (response) {
+
+	console.log("yelp response:", response);
+})
+.then((response) => {
+  let i = 0;
+  while (i < 6) {
+    restaurantResults.push(response.businesses[i].name)
+    i++
+  }
+  for (const element of restaurantResults) {
+
+    const string = element.toString()
+    const isRestaurant = string.includes(queryText)
+
+    if (isRestaurant) {
+      results.push('restaurant')
+      return;
+    }
+  }
+})
+
+//checks to see if restaurant name matches
+// const isRestaurant = function(array) {
+//   if (array.includes(queryText)) {
+//     results.push('restaurant')
+//     return;
+//   }
+//   return false;
+// }
+
+
+// //groceries API
+const dandelionSettings = {
+	"async": true,
+	"crossDomain": true,
+	"url": `https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`,
+	"method": "GET",
+};
+let dandelionResults = []
+$.ajax(dandelionSettings).done(function (response) {
+
+
+	console.log("Dandelion Response:", response.annotations[0].categories);
+
+})
+.then((response) => {
+  let i = 0;
+  while (i < 6) {
+    dandelionResults.push(response.annotations[0].categories[i])
+    i++
+  }
+  for (const element of dandelionResults) {
+    const string = element.toString()
+    const isBook = string.includes('novel')
+    const isMovie = string.includes('film')
+    if (isBook) {
+      results.push('book')
+      return;
+    }
+    if (isMovie) {
+      results.push('movie')
+      return
+    }
+  }
+  return false;
+})
+
+
+
+//console.log(isRestaurant(restaurantResults));
 // //movies/tv api
 // const movieSettings = {
 //   "async": true,
@@ -73,36 +156,7 @@ const results = [];
 // 	console.log(response);
 // });
 
-// //yelp API
-// const yelpSettings = {
-// 	"url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
-// 	"method": "GET",
-// 	"headers": {
-// 		"Authorization": "Bearer nxBY2qRdQtx6tQSmpDNElKsuUINdEi_aI_4RDjjvqs3lbzGmgMem__btNaNnT2ruHn28UmFZ1W6Z9zrmjpw0rmyyaEuwGGMc-GSVXD6Q_ffREboy1bP4Po1S6AdGYXYx"
-// 	}
-// };
 
-//  const restaurantResults = [];
-
-// $.ajax(yelpSettings).done(function (response) {
-//   let i = 0;
-//   while (i < 3) {
-//     restaurantResults.push(response.businesses[i].name);
-//     i++;
-//   }
-
-// 	console.log("yelp response:", response);
-// });
-
-// //checks to see if restaurant name matches
-// const isRestaurant = function(array) {
-//   if (array.includes(queryText)) {
-//     return true;
-//   }
-//   return false;
-// }
-
-//console.log(isRestaurant(restaurantResults));
 
 // //google books api
 
@@ -143,7 +197,7 @@ const results = [];
 
 
 
-console.log(results)
+console.log('RESULT TO LOOK AT', results)
 
 });
 
