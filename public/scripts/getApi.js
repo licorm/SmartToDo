@@ -3,6 +3,7 @@ $(() => {
 
 const queryText = 'eggs'
 const results = [];
+<<<<<<< HEAD
 //movies/tv api
 const movieSettings = {
   "async": true,
@@ -50,6 +51,8 @@ $.ajax(grocerySettings).done(function (response) {
 
 const queryText = 'Cactus Club'
 const results = [];
+=======
+>>>>>>> api
 //yelp API
 const yelpSettings = {
 	"url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
@@ -83,10 +86,17 @@ const restaurantResults = [];
   }
   })
 
+<<<<<<< HEAD
 
 
 
 
+=======
+
+
+
+
+>>>>>>> api
 // //checks to see if restaurant name matches
 // const isRestaurant = function(array) {
 //   if (array.includes(queryText)) {
