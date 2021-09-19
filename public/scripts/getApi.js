@@ -1,31 +1,40 @@
-//const { restaurantArray } = require("./apiFetch");
-import restaurantArray from "./apiFetch"
+$(() => {
 
-
-
-
+const queryText = 'Cactus Club'
+const results = [];
 //yelp API
 const yelpSettings = {
-	"url": `https://api.yelp.com/v3/businesses/search?term=cactus%20club&location=calgary`,
+	"url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
 	"method": "GET",
 	"headers": {
 		"Authorization": "Bearer nxBY2qRdQtx6tQSmpDNElKsuUINdEi_aI_4RDjjvqs3lbzGmgMem__btNaNnT2ruHn28UmFZ1W6Z9zrmjpw0rmyyaEuwGGMc-GSVXD6Q_ffREboy1bP4Po1S6AdGYXYx"
 	}
 };
 
-const fetchYelp = function(settings) {
- $.ajax(settings).done(function (response) {
+const restaurantResults = [];
+
+ $.ajax(yelpSettings).done(function (response) {
 
     console.log("yelp response:", response);
   })
   .then((response) => {
-    restaurantArray(response);
+    let i = 0;
+  while (i < 6) {
+    restaurantResults.push(response.businesses[i].name)
+    i++
+  }
+  for (const element of restaurantResults) {
+
+    const string = element.toString()
+    const isRestaurant = string.includes(queryText)
+
+    if (isRestaurant) {
+      results.push('restaurant')
+      return results;
+    }
+  }
   })
-}
-$(() => {
-  fetchYelp(yelpSettings)
-  console.log('RESULT TO LOOK AT', results)
-})
+
 
 
 
@@ -191,6 +200,7 @@ $(() => {
 
 
 console.log('RESULT TO LOOK AT', results)
+})
 
 
 
