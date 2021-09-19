@@ -44,6 +44,7 @@ const widgetsRoutes = require("./routes/widgets");
 // Mount all resource routes
 const loginRouter = require('./routes/login');
 const addRoute = require('./routes/addRoute');
+const deleteRoute = require('./routes/deleteRoute');
 
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -51,6 +52,8 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 app.use('/login', loginRouter(db))
 app.use('/', addRoute(db));
+app.use('/delete', deleteRoute(db));
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
