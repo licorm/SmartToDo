@@ -104,16 +104,18 @@ $.ajax(bookSettings).done(function (response) {
 
 const search = ""
 
-  const wolframSettings = {
-    "url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${results[0]}`,
-    "method": "GET",
-  };
+const wolframSettings = {
+  "url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=eggs`,
+  "method": "GET",
+};
 
-  $.ajax(wolframSettings).done(function (response) {
-    console.log('Wolfram Responses')
-    console.log(response.queryresult.datatypes);
-    console.log(response);
-  });
+
+$.ajax(wolframSettings).done(function (response) {
+  const dataType = response.queryresult.datatypes
+    if (dataType.toLowerCase() === 'expandedfood' || dataType.toLowerCase() === 'ConsumerProductsPTE') {
+    return true
+  }
+});
 
 
 
@@ -123,7 +125,6 @@ const search = ""
 console.log(results)
 
 });
-
 
 
 
