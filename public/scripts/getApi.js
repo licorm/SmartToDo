@@ -1,58 +1,9 @@
 $(() => {
 
-
-const queryText = 'eggs'
-const results = [];
-<<<<<<< HEAD
-//movies/tv api
-const movieSettings = {
-  "async": true,
-  "crossDomain": true,
-  "url": `https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-movies-by-title&title=${queryText}`,
-  "method": "GET",
-  "headers": {
-    "x-rapidapi-host": "movies-tvshows-data-imdb.p.rapidapi.com",
-    "x-rapidapi-key": "85cb3c3da5msh1736a5f390ea368p159ccejsn0b9cde09d29b"
-  }
-};
-
-$.ajax(movieSettings).done(function (response) {
-  //consoling the number of search results
-  let i = 0;
-  while (i < 3) {
-    results.push(response.movie_results[i].title)
-    i++
-  }
-  console.log("movie response:", response);
-});
-
-
-
-// //groceries API
-const grocerySettings = {
-	"async": true,
-	"crossDomain": true,
-	"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/products/search?query=${queryText}&offset=0&number=10&maxCalories=5000&minProtein=0&maxProtein=100&minFat=0&maxFat=100&minCarbs=0&maxCarbs=100&minCalories=0`,
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-		"x-rapidapi-key": "85cb3c3da5msh1736a5f390ea368p159ccejsn0b9cde09d29b"
-	}
-};
-
-$.ajax(grocerySettings).done(function (response) {
-  let i = 0;
-  while (i < 3) {
-    results.push(response.products[i].title)
-    i++
-  }
-	console.log("grocery response:", response);
-});
-
 const queryText = 'Cactus Club'
 const results = [];
-=======
->>>>>>> api
+
+
 //yelp API
 const yelpSettings = {
 	"url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
@@ -86,17 +37,11 @@ const restaurantResults = [];
   }
   })
 
-<<<<<<< HEAD
 
 
 
 
-=======
 
-
-
-
->>>>>>> api
 // //checks to see if restaurant name matches
 // const isRestaurant = function(array) {
 //   if (array.includes(queryText)) {
@@ -107,45 +52,47 @@ const restaurantResults = [];
 // }
 
 
-// // //groceries API
-// const dandelionSettings = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": `https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`,
-// 	"method": "GET",
-// };
-// let dandelionResults = []
-// $.ajax(dandelionSettings).done(function (response) {
+// dandelionSettings
+const dandelionSettings = {
+	"async": true,
+	"crossDomain": true,
+	"url": `https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`,
+	"method": "GET",
+};
+
+let dandelionResults = []
+
+$.ajax(dandelionSettings).done(function (response) {
 
 
-// 	console.log("Dandelion Response:", response.annotations[0].categories);
+	console.log("Dandelion Response:", response.annotations[0].categories);
 
-// })
-// .then((response) => {
-//   let i = 0;
-//   while (i < 6) {
-//     dandelionResults.push(response.annotations[0].categories[i])
-//     i++
-//   }
-//   for (const element of dandelionResults) {
-//     const string = element.toString()
-//     const isBook = string.includes('novel')
-//     const isMovie = string.includes('film')
-//     if (isBook) {
-//       results.push('book')
-//       return;
-//     }
-//     if (isMovie) {
-//       results.push('movie')
-//       return
-//     }
-//   }
-//   return false;
-// })
+})
+.then((response) => {
+  let i = 0;
+  while (i < 6) {
+    dandelionResults.push(response.annotations[0].categories[i])
+    i++
+  }
+  for (const element of dandelionResults) {
+    const string = element.toString()
+    const isBook = string.includes('novel')
+    const isMovie = string.includes('film')
+    if (isBook) {
+      results.push('book')
+      return;
+    }
+    if (isMovie) {
+      results.push('movie')
+      return
+    }
+  }
+  return false;
+})
 
 
 
-// console.log(isRestaurant(restaurantResults));
+
 // //movies/tv api
 // const movieSettings = {
 //   "async": true,
@@ -218,43 +165,7 @@ const restaurantResults = [];
 // });
 
 
-//yelp API
-const yelpSettings = {
-	"url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
-	"method": "GET",
-	"headers": {
-		"Authorization": "Bearer nxBY2qRdQtx6tQSmpDNElKsuUINdEi_aI_4RDjjvqs3lbzGmgMem__btNaNnT2ruHn28UmFZ1W6Z9zrmjpw0rmyyaEuwGGMc-GSVXD6Q_ffREboy1bP4Po1S6AdGYXYx"
-	}
-};
 
-$.ajax(yelpSettings).done(function (response) {
-  const businesses = response.businesses
-  businesses.forEach((business)=> {
-   results.push(business.name)
-  })
-	console.log("yelp response:", response);
-});
-
-//google books api
-
-const bookSettings = {
-	"url": `https://www.googleapis.com/books/v1/volumes?q=${queryText}&projection=lite&key=AIzaSyDhEMfJfO2c0KBNRG5fF0RYVTwJottooPE`,
-	"method": "GET",
-};
-
-$.ajax(bookSettings).done(function (response) {
-  let i = 0;
-  while (i < 3) {
-    if (response.items[i].volumeInfo.title) {
-      results.push(response.items[i].volumeInfo.title)
-
-    }
-    i++
-  }
-	console.log("books response:", response);
-});
-
-//wolfram api
 
 
 
@@ -291,11 +202,14 @@ $.ajax(bookSettings).done(function (response) {
 
 
 $.ajax(wolframSettings).done(function (response) {
+  console.log('wolfram response:', response.queryresult.datatypes)
+})
+.then((response) => {
   const dataType = response.queryresult.datatypes
     if (dataType.toLowerCase() === 'expandedfood' || dataType.toLowerCase() === 'ConsumerProductsPTE') {
-    return true
+    return results.push('product')
   }
-});
+})
 
 
 
@@ -303,10 +217,10 @@ $.ajax(wolframSettings).done(function (response) {
 
 
 
-console.log(results)
+
 
 console.log('RESULT TO LOOK AT', results)
-})
+
 
 
 
