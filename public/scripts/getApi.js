@@ -1,4 +1,5 @@
-// const { restaurantArray } = require("./apiFetch");
+//const { restaurantArray } = require("./apiFetch");
+import restaurantArray from "./apiFetch"
 
 
 
@@ -173,16 +174,16 @@ $(() => {
 
 // // const search = ""
 
-//   const wolframSettings = {
-//     "url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`,
-//     "method": "GET",
-//   };
+  const wolframSettings = {
+    "url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`,
+    "method": "GET",
+  };
 
-//   $.ajax(wolframSettings).done(function (response) {
-//     console.log('Wolfram Responses')
-//     console.log(response.queryresult.datatypes);
-//     console.log(response);
-//   });
+  $.ajax(wolframSettings).done(function (response) {
+    console.log('Wolfram Responses')
+    console.log(response.queryresult.datatypes);
+    console.log(response);
+  });
 
 
 
