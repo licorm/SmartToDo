@@ -6,21 +6,48 @@ const queryString = `INSERT INTO tasks(user_id, category_type, name, description
 const description = 'Wanting to ';
 const addTask = (db) => {
   router.post('/', (req, res) => {
-    const user_id = req.body.user_id;
-    const queryText = req.body.text;
+    console.log('task', req.body.task);
+    console.log('user_id', req.session.user_id)
+    const user_id = req.session.user_id;
+    const queryText = req.body.task;
     if (queryText.includes('watch')) {
-      db.query(`${queryString}`, (user_id, 'movie', queryText, `${description} ${queryText}`))
-    }
-    if (queryText.includes('eat')) {
-      db.query(`${queryString}`, (user_id, 'eat', queryText, `${description} ${queryText}`))
+      db.query(`${queryString}`, [user_id, 'movie', queryText, `${description} ${queryText}`])
+      .then((response) => {
+        res.redirect('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     }
     if (queryText.includes('read')) {
-      db.query(`${queryString}`, (user_id, 'read', queryText, `${description} ${queryText}`))
+      db.query(`${queryString}`, [user_id, 'book', queryText, `${description} ${queryText}`])
+      .then((response) => {
+        res.redirect('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    }
+    if (queryText.includes('eat')) {
+      db.query(`${queryString}`, [user_id, 'restaurant', queryText, `${description} ${queryText}`])
+      .then((response) => {
+        res.redirect('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     }
     if (queryText.includes('buy')) {
-      db.query(`${queryString}`, (user_id, 'buy', queryText, `${description} ${queryText}`))
+      db.query(`${queryString}`, [user_id, 'products', queryText, `${description} ${queryText}`])
+      .then((response) => {
+        res.redirect('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     }
   })
+  return router;
 }
 
-module.exports = addRoute;
+module.exports = addTask;
