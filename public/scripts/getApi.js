@@ -277,11 +277,13 @@ $.ajax(bookSettings).done(function (response) {
     "method": "GET",
   };
 
-  $.ajax(wolframSettings).done(function (response) {
-    console.log('Wolfram Responses')
-    console.log(response.queryresult.datatypes);
-    console.log(response);
-  });
+
+$.ajax(wolframSettings).done(function (response) {
+  const dataType = response.queryresult.datatypes
+    if (dataType.toLowerCase() === 'expandedfood' || dataType.toLowerCase() === 'ConsumerProductsPTE') {
+    return true
+  }
+});
 
 
 
@@ -295,7 +297,6 @@ console.log('RESULT TO LOOK AT', results)
 
 
 });
-
 
 
 
