@@ -79,3 +79,16 @@ inputstring: "undefined"
 numpods: 15
 parsetimedout: false
 parsetiming: 0.089
+
+
+
+
+WOLFRAM DATATYPES
+iphone : invention
+  -values array:
+  0: {name: 'Invention', desc: 'an invention', input: '*C.iphone-_*Invention-'}
+1: {name: 'ConsumerProductsPTEClass', desc: ' referring to con
+
+eggs : expandedFood
+  -values array: does not exist
+
