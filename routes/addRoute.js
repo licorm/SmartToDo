@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const fetchApi = require('../public/scripts/getApi');
 
 const queryString = `INSERT INTO tasks(user_id, category_type, name, description)
                     VALUES ($1, $2, $3, $4)`;
@@ -46,7 +47,20 @@ const addTask = (db) => {
         console.log(error);
       })
     }
+    const category = fetchApi(queryText);
+    console.log('category', category);
+
+    db.query(`${queryString}`, [user_id, category, queryText, `${description} ${queryText}`])
+    .then((response) => {
+      res.redirect('/');
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    
   })
+  
+
   return router;
 }
 
