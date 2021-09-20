@@ -31,7 +31,8 @@ const wolframSettings = {
 
 const fetchYelp = function() {
   const restaurantResults = [];
- return $.ajax(yelpSettings).done(function (response) {
+ return $.ajax(yelpSettings)
+ .done(function (response) {
 
   let i = 0;
   while (i < 6) {
@@ -57,6 +58,7 @@ const fetchYelp = function() {
 
 const failureCallback = (error) => {
   console.log(error)
+  return
 }
 
 const fetchDandelion = function() {
@@ -125,6 +127,9 @@ const fetchWolfram = function() {
  const determineCategory = function() {
   return fetchYelp()
    .then(fetchDandelion)
+   .catch(error => {
+    return;
+   })
    .then(fetchWolfram)
    .then(() => {
      if (results.length === 0 || results.length > 1)
