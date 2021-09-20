@@ -11,6 +11,7 @@ const addTask = (db) => {
     console.log('user_id', req.session.user_id)
     const user_id = req.session.user_id;
     const queryText = req.body.task;
+
     if (queryText.includes('watch')) {
       db.query(`${queryString}`, [user_id, 'movie', queryText, `${description} ${queryText}`])
       .then((response) => {
@@ -57,9 +58,9 @@ const addTask = (db) => {
     .catch((error) => {
       console.log(error);
     })
-    
+
   })
-  
+
 
   return router;
 }

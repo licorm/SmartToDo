@@ -1,15 +1,18 @@
-const jsdom = require('jsdom');
-const dom = new jsdom.JSDOM("");
-const $ = require('jquery')(dom.window);
+// const jsdom = require('jsdom');
+// const dom = new jsdom.JSDOM("");
+// const $ = require('jquery')(dom.window);
 
-const fetchApi = (queryText) => {
+
+
   $(() => {
-
+    const queryText = "Harry Potter"
     const results = [];
-    
+
     const fetchYelp = function(queryText) {
       //yelp settings
     const yelpSettings = {
+      "async": true,
+      "crossDomain": true,
       "url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
       "method": "GET",
       "headers": {
@@ -19,37 +22,35 @@ const fetchApi = (queryText) => {
       const restaurantResults = [];
      return $.ajax(yelpSettings)
      .done(function (response) {
-    
+      console.log('restaurant responese:', response)
       let i = 0;
-      while (i < 6) {
+      while (i < 4) {
         restaurantResults.push(response.businesses[i].name)
         i++
       }
+      console.log(restaurantResults)
       if (restaurantResults.length >= 1) {
         for (const element of restaurantResults) {
-      
+
           const isRestaurant = element.toString()
-      
-      
+
+
           if (isRestaurant === queryText) {
             results.push('restaurant');
-      
+
             return results;
           }
       }
       }
-    
-        console.log("yelp response:", response);
-        return results;
+
+      console.log(results)
+
       })
-    
+
     }
-    
-    const failureCallback = (error) => {
-      console.log(error)
-      return
-    }
-    
+
+
+
     const fetchDandelion = function(queryText) {
       // dandelionSettings
     const dandelionSettings = {
@@ -58,11 +59,11 @@ const fetchApi = (queryText) => {
       "url": `https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`,
       "method": "GET"
     };
-    
+
         let dandelionResults = []
      return $.ajax(dandelionSettings)
       .done(function (response) {
-    
+
         console.log("Dandelion Response:", response);
         let i = 0;
         while (i < 6) {
@@ -75,78 +76,86 @@ const fetchApi = (queryText) => {
             const isBook = string.includes('novel')
             const isMovie = string.includes('film')
             const isTv = string.includes('television')
-    
+
             if (isBook) {
               results.push('book')
-    
+
               return results;
             }
             if (isMovie || isTv) {
               results.push('movie')
-    
+
               return results;
             }
           }
         }
-    
+
       })
-    
-    
-    
+
+
+
     }
-    
+
     const fetchWolfram = function(queryText) {
       //wolframSettings
       const wolframSettings = {
+        "async": true,
+        "crossDomain": true,
         "url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`,
-    
+
         "method": "GET",
       };
-    
+
       return $.ajax(wolframSettings)
       .done(function (response) {
          console.log('wolfram response:', response.queryresult.datatypes)
          const dataType = response.queryresult.datatypes
            if (dataType.toLowerCase() === 'expandedfood' || dataType.toLowerCase() === 'ConsumerProductsPTE') {
            results.push('product')
-    
+
            return results;
          }
-    
+
          if (dataType.toLowerCase().includes('movie')) {
            results.push('movie')
-    
+
            return results;
          }
        })
      }
-    
-    
-    
-     const determineCategory = function(queryText) {
-      return fetchYelp(queryText)
-       .then(fetchDandelion(queryText))
+
+
+
+     const determineCategory = function() {
+      return fetchYelp()
+      .catch(error => {
+        return;
+       })
+       .then(fetchDandelion)
        .catch(error => {
         return;
        })
-       .then(fetchWolfram(queryText))
-       .then(() => {
-         if (results.length === 0 || results.length > 1)
-         results.push('nocat')
-         console.log(results)
+       .then(fetchWolfram)
+       .catch(error => {
+        return;
+       })
+       .then((results) => {
+         if (results.length === 0 || results.length > 1) {
+          results.push('nocat')
+         }
+
+         console.log('results:', results)
          return results;
        })
      }
-    console.log('results', results);
-    determineCategory(queryText)
-    .then(() => {
-      return determineCategory(queryText)
-    });
-    
-    
-    
-    
-    
+
+    return determineCategory(queryText);
+
+
+
+
+
+
     // //movies/tv api
     // const movieSettings = {
     //   "async": true,
@@ -158,9 +167,9 @@ const fetchApi = (queryText) => {
     //     "x-rapidapi-key": "85cb3c3da5msh1736a5f390ea368p159ccejsn0b9cde09d29b"
     //   }
     // };
-    
+
     // const movieResults = [];
-    
+
     // $.ajax(movieSettings).done(function (response) {
     //   //consoling the number of search results
     //   let i = 0;
@@ -170,16 +179,16 @@ const fetchApi = (queryText) => {
     //   }
     //   console.log("movie response:", response);
     // });
-    
+
     //checks if exists as movie
     // const isMovie = function(array) {
     //   if (array) {
-    
+
     //   }
     // }
-    
-    
-    
+
+
+
     // //groceries API
     // const grocerySettings = {
     // 	"async": true,
@@ -191,7 +200,7 @@ const fetchApi = (queryText) => {
     // 		"x-rapidapi-key": "85cb3c3da5msh1736a5f390ea368p159ccejsn0b9cde09d29b"
     // 	}
     // };
-    
+
     // $.ajax(grocerySettings).done(function (response) {
     //   let i = 0;
     //   while (i < 3) {
@@ -200,8 +209,8 @@ const fetchApi = (queryText) => {
     //   }
     // 	console.log("grocery response:", response);
     // });
-    
-    
+
+
     // //amazon api
     // const amazonSettings = {
     // 	"async": true,
@@ -213,41 +222,41 @@ const fetchApi = (queryText) => {
     // 		"x-rapidapi-key": "85cb3c3da5msh1736a5f390ea368p159ccejsn0b9cde09d29b"
     // 	}
     // };
-    
+
     // $.ajax(amazonSettings).done(function (response) {
     // 	console.log(response);
     // });
-    
-    
+
+
     // //google books api
-    
+
     // const bookSettings = {
     // 	"url": `https://www.googleapis.com/books/v1/volumes?q=${queryText}&key=AIzaSyDhEMfJfO2c0KBNRG5fF0RYVTwJottooPE`,
     // 	"method": "GET",
     // };
-    
+
     // $.ajax(bookSettings).done(function (response) {
     //   let i = 0;
     //   while (i < 3) {
     //     if (response.items[i].volumeInfo.title) {
     //       results.push(response.items[i].volumeInfo.title)
-    
+
     //     }
     //     i++
     //   }
     // 	console.log("books response:", response);
     // });
-    
+
     // //wolfram api
-    
+
     // // const search = ""
-    
+
     });
-    
 
-}
 
-module.exports = fetchApi;
+
+
+
 
 
 
