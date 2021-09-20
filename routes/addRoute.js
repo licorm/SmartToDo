@@ -12,12 +12,25 @@ const addTask = (db) => {
     const user_id = req.session.user_id;
     const queryText = req.body.task;
     const category = req.body.category;
+    const categoryString = "";
 
+    if (req.body.category === 'movie') {
+       categoryString += `watch ${category}`;
+    }
+    if (req.body.category === 'book') {
+      categoryString += `read ${category}`;
+    }
+    if (req.body.category === 'restaurant') {
+      categoryString += `eat at ${category}`;
+    }
+    if (req.body.category === 'product') {
+      categoryString += `buy ${category}`;
+    }
+    if (req.body.category === 'nocat') {
+      categoryString += `${category}`;
+    }
 
-
-    console.log('category', category);
-
-    db.query(`${queryString}`, [user_id, category, queryText, `${description} ${queryText}`])
+    db.query(`${queryString}`, [user_id, categoryString, queryText, `${description} ${queryText}`])
     .then((response) => {
       res.redirect('/');
     })

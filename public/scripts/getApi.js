@@ -31,26 +31,27 @@ const $submitForm = $(`
 
   const data = $(this).parents().children().find('#task').serialize();
   const queryText = data.slice(5)
-  console.log("data:", queryText)
+  const unencode = decodeURI(queryText)
+  console.log(unencode)
   if (queryText.includes('watch')) {
     results.push('movie')
     submitTask({
-      "task": queryText,
+      "task": unencode,
       "category": results[0] });
   } else if (queryText.includes('read')) {
     results.push('book')
     submitTask({
-      "task": queryText,
+      "task": unencode,
       "category": results[0] });
   } else if (queryText.includes('eat')) {
     results.push('restaurant')
     submitTask({
-      "task": queryText,
+      "task": unencode,
       "category": results[0] });
   } else if (queryText.includes('buy')) {
     results.push('product')
     submitTask({
-      "task": queryText,
+      "task": unencode,
       "category": results[0] });
   } else {
     //yelp settings
@@ -192,7 +193,7 @@ const fetchWolfram = function() {
 determineCategory()
 .then(() => {
   submitTask({
-    "task": queryText,
+    "task": unencode,
     "category": results[0] });
 })
 
