@@ -3,31 +3,21 @@
 $(() => {
 
 const $submitForm = $(`
-  <body>
-    <h1>Hello World!</h1>
-    <div>
-      <form method="POST" action="/">
-        <label for="addTasks">add new task:</label><br>
-        <input type="text" id="task" name="task"><br>
-        <input type="submit" value="submit">
+<form class="createForm" method="POST" action="/">
+      <label class="sr-only">Name</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Add Something" id="task" name="task">
+      <button type="submit" class="btn btn-primary mb-2">Add</button>
       </form>
-      <form method="POST" action="/delete">
-        <label for="deleteTasks">delete task:</label><br>
-        <input type="text" id="deleteTask" name="delete" value="Harry Potter"><br>
-        <input type="submit" value="delete">
-      </form>
-    </div>
-  </body>
   `)
  const results = [];
 
- const $main = $('#main-content');
+ const $main = $('#submitform');
  $submitForm.appendTo($main);
-
 
 
  $submitForm.on('submit', function(event) {
   event.preventDefault();
+
 
   const data = $(this).parents().children().find('#task').serialize();
   const queryText = data.slice(5)
@@ -201,8 +191,11 @@ determineCategory()
   }
 
 
+})
+.done(() => {
+  $("#task").empty();
+})
 
-});
 
 
 

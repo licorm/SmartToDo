@@ -12,25 +12,25 @@ const addTask = (db) => {
     const user_id = req.session.user_id;
     const queryText = req.body.task;
     const category = req.body.category;
-    const categoryString = "";
-
-    if (req.body.category === 'movie') {
-       categoryString += `watch ${category}`;
+    let categoryString = "Wanting to ";
+    console.log(req.body.category.includes('watch'))
+    if (req.body.category === 'movie' && !req.body.task.includes('watch')) {
+       categoryString += `watch `;
     }
-    if (req.body.category === 'book') {
-      categoryString += `read ${category}`;
+    if (req.body.category === 'book' && !req.body.category.includes('read')) {
+      categoryString += `read `;
     }
-    if (req.body.category === 'restaurant') {
-      categoryString += `eat at ${category}`;
+    if (req.body.category === 'restaurant' && !req.body.category.includes('eat')) {
+      categoryString += `eat at `;
     }
-    if (req.body.category === 'product') {
-      categoryString += `buy ${category}`;
+    if (req.body.category === 'product' && !req.body.category.includes('buy')) {
+      categoryString += `buy `;
     }
     if (req.body.category === 'nocat') {
-      categoryString += `${category}`;
+      categoryString += ``;
     }
 
-    db.query(`${queryString}`, [user_id, categoryString, queryText, `${description} ${queryText}`])
+    db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
     .then((response) => {
       res.redirect('/');
     })
