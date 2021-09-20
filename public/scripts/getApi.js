@@ -1,10 +1,10 @@
 $(() => {
 
-const queryText = 'Cactus Club'
+const queryText = 'Eggs'
 const results = [];
 
 
-//yelp API
+//yelp settings
 const yelpSettings = {
 	"url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
 	"method": "GET",
@@ -13,82 +13,131 @@ const yelpSettings = {
 	}
 };
 
-const restaurantResults = [];
+// dandelionSettings
+const dandelionSettings = {
+	"async": true,
+	"crossDomain": true,
+	"url": `https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`,
+	"method": "GET"
+};
 
- $.ajax(yelpSettings).done(function (response) {
+//wolframSettings
+const wolframSettings = {
+  "url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`,
 
-    console.log("yelp response:", response);
-  })
-  .then((response) => {
-    let i = 0;
+  "method": "GET",
+};
+
+
+const fetchYelp = function() {
+  const restaurantResults = [];
+ return $.ajax(yelpSettings).done(function (response) {
+
+  let i = 0;
   while (i < 6) {
     restaurantResults.push(response.businesses[i].name)
     i++
   }
   for (const element of restaurantResults) {
 
-    const string = element.toString()
-    const isRestaurant = string.includes(queryText)
+    const isRestaurant = element.toString()
 
-    if (isRestaurant) {
-      results.push('restaurant')
+
+    if (isRestaurant === queryText) {
+      results.push('restaurant');
+
       return results;
     }
   }
+
+    console.log("yelp response:", response);
+  })
+
+}
+
+const failureCallback = (error) => {
+  console.log(error)
+}
+
+const fetchDandelion = function() {
+
+    let dandelionResults = []
+ return $.ajax(dandelionSettings)
+  .done(function (response) {
+
+    console.log("Dandelion Response:", response);
+    let i = 0;
+    while (i < 6) {
+      dandelionResults.push(response.annotations[0].categories[i])
+      i++
+    }
+    if (dandelionResults.length > 0) {
+      for (const element of dandelionResults) {
+        const string = element.toString()
+        const isBook = string.includes('novel')
+        const isMovie = string.includes('film')
+        const isTv = string.includes('television')
+
+        if (isBook) {
+          results.push('book')
+
+          return results;
+        }
+        if (isMovie || isTv) {
+          results.push('movie')
+
+          return results;
+        }
+      }
+    }
+
   })
 
 
 
+}
+
+const fetchWolfram = function() {
+
+    return $.ajax(wolframSettings)
+  .done(function (response) {
+     console.log('wolfram response:', response.queryresult.datatypes)
+     const dataType = response.queryresult.datatypes
+       if (dataType.toLowerCase() === 'expandedfood' || dataType.toLowerCase() === 'ConsumerProductsPTE') {
+       results.push('product')
+
+       return results;
+     }
+
+     if (dataType.toLowerCase().includes('movie')) {
+       results.push('movie')
+
+       return results;
+     }
+
+
+   })
+
+ }
 
 
 
-// //checks to see if restaurant name matches
-// const isRestaurant = function(array) {
-//   if (array.includes(queryText)) {
-//     results.push('restaurant')
-//     return;
-//   }
-//   return false;
-// }
+ const determineCategory = function() {
+  return fetchYelp()
+   .then(fetchDandelion)
+   .then(fetchWolfram)
+   .then(() => {
+     if (results.length === 0 || results.length > 1)
+     results.push('nocat')
+     console.log(results)
+     return results;
+
+   })
+ }
+
+ determineCategory()
 
 
-// dandelionSettings
-const dandelionSettings = {
-	"async": true,
-	"crossDomain": true,
-	"url": `https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`,
-	"method": "GET",
-};
-
-let dandelionResults = []
-
-$.ajax(dandelionSettings).done(function (response) {
-
-
-	console.log("Dandelion Response:", response.annotations[0].categories);
-
-})
-.then((response) => {
-  let i = 0;
-  while (i < 6) {
-    dandelionResults.push(response.annotations[0].categories[i])
-    i++
-  }
-  for (const element of dandelionResults) {
-    const string = element.toString()
-    const isBook = string.includes('novel')
-    const isMovie = string.includes('film')
-    if (isBook) {
-      results.push('book')
-      return;
-    }
-    if (isMovie) {
-      results.push('movie')
-      return
-    }
-  }
-  return false;
-})
 
 
 
@@ -194,22 +243,6 @@ $.ajax(dandelionSettings).done(function (response) {
 
 // // const search = ""
 
-  const wolframSettings = {
-    "url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`,
-
-    "method": "GET",
-  };
-
-
-$.ajax(wolframSettings).done(function (response) {
-  console.log('wolfram response:', response.queryresult.datatypes)
-})
-.then((response) => {
-  const dataType = response.queryresult.datatypes
-    if (dataType.toLowerCase() === 'expandedfood' || dataType.toLowerCase() === 'ConsumerProductsPTE') {
-    return results.push('product')
-  }
-})
 
 
 
@@ -219,7 +252,11 @@ $.ajax(wolframSettings).done(function (response) {
 
 
 
-console.log('RESULT TO LOOK AT', results)
+
+
+
+
+
 
 
 
