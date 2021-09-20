@@ -32,7 +32,28 @@ const $submitForm = $(`
   const data = $(this).parents().children().find('#task').serialize();
   const queryText = data.slice(5)
   console.log("data:", queryText)
-//yelp settings
+  if (queryText.includes('watch')) {
+    results.push('movie')
+    submitTask({
+      "task": queryText,
+      "category": results[0] });
+  } else if (queryText.includes('read')) {
+    results.push('book')
+    submitTask({
+      "task": queryText,
+      "category": results[0] });
+  } else if (queryText.includes('eat')) {
+    results.push('restaurant')
+    submitTask({
+      "task": queryText,
+      "category": results[0] });
+  } else if (queryText.includes('buy')) {
+    results.push('product')
+    submitTask({
+      "task": queryText,
+      "category": results[0] });
+  } else {
+    //yelp settings
 const yelpSettings = {
 	"url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
 	"method": "GET",
@@ -175,6 +196,8 @@ determineCategory()
     "category": results[0] });
 })
 
+
+  }
 
 
 

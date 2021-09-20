@@ -13,42 +13,7 @@ const addTask = (db) => {
     const queryText = req.body.task;
     const category = req.body.category;
 
-    if (queryText.includes('watch')) {
-      db.query(`${queryString}`, [user_id, 'movie', queryText, `${description} ${queryText}`])
-      .then((response) => {
-        res.redirect('/');
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    }
-    if (queryText.includes('read')) {
-      db.query(`${queryString}`, [user_id, 'book', queryText, `${description} ${queryText}`])
-      .then((response) => {
-        res.redirect('/');
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    }
-    if (queryText.includes('eat')) {
-      db.query(`${queryString}`, [user_id, 'restaurant', queryText, `${description} ${queryText}`])
-      .then((response) => {
-        res.redirect('/');
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    }
-    if (queryText.includes('buy')) {
-      db.query(`${queryString}`, [user_id, 'products', queryText, `${description} ${queryText}`])
-      .then((response) => {
-        res.redirect('/');
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    }
+
 
     console.log('category', category);
 
