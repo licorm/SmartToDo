@@ -45,6 +45,7 @@ const widgetsRoutes = require("./routes/widgets");
 const loginRouter = require('./routes/login');
 const addRoute = require('./routes/addRoute');
 const deleteRoute = require('./routes/deleteRoute');
+const getTasks = require('./routes/getTasks');
 
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -53,6 +54,9 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use('/login', loginRouter(db))
 app.use('/', addRoute(db));
 app.use('/delete', deleteRoute(db));
+
+app.use('/tasks', getTasks(db)); // Add a oute fot tasks from databade 
+
 
 // Home page
 // Warning: avoid creating more routes in this file!
