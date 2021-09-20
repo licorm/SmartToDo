@@ -16,5 +16,17 @@
 
   <body>
     <h1>Hello World!</h1>
+    <div>
+      <form method="POST" action="/">
+        <label for="addTasks">add new task:</label><br>
+        <input type="text" id="task" name="task" value="watch Harry Potter"><br>
+        <input type="submit" value="Submit">
+      </form>
+      <form method="POST" action="/delete">
+        <label for="deleteTasks">delete task:</label><br>
+        <input type="text" id="deleteTask" name="delete" value="Harry Potter"><br>
+        <input type="submit" value="delete">
+      </form>
+    </div>
   </body>
 </html>
