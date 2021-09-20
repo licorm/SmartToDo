@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const fetchApi = require('../public/scripts/getApi');
+//const fetchApi = require('../public/scripts/getApi');
 
 const queryString = `INSERT INTO tasks(user_id, category_type, name, description)
                     VALUES ($1, $2, $3, $4)`;
@@ -65,4 +65,4 @@ const addTask = (db) => {
   return router;
 }
 
-module.exports = addTask;
+exports.addTask = addTask;
