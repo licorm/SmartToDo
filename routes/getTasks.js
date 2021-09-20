@@ -6,15 +6,39 @@ const router  = express.Router();
 const getTasks = (db) => {
   router.get("/", (req, res) => {
     let query = `SELECT * FROM tasks ORDER BY category_type`;
-    console.log(query);
     db.query(query)
       .then(data => {
         const categoties = data.rows;
-        // const groupedTasks = {};
-        /**
-         category_type => [item1, item2]
-         */
-        res.json({ categoties });
+        const groupedTasks = {};
+        for(const task of categoties){
+          if(task.category_type === "books"){
+            if(groupedTasks[task.category_type]){
+              groupedTasks[task.category_type].push(task);
+            }else{
+              groupedTasks[task.category_type] = [task];
+            }
+          }else if(task.category_type === "movie"){
+            if(groupedTasks[task.category_type]){
+              groupedTasks[task.category_type].push(task);
+            }else{
+              groupedTasks[task.category_type] = [task];
+            }
+          }else if(task.category_type === "products"){
+            if(groupedTasks[task.category_type]){
+              groupedTasks[task.category_type].push(task);
+            }else{
+              groupedTasks[task.category_type] = [task];
+            }
+          }else if(task.category_type === "restaurants"){
+            if(groupedTasks[task.category_type]){
+              groupedTasks[task.category_type].push(task);
+            }else{
+              groupedTasks[task.category_type] = [task];
+            }
+          }
+      }
+
+        res.json(groupedTasks);
       })
       .catch(err => {
         res
