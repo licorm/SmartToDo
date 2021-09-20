@@ -168,7 +168,12 @@ const fetchWolfram = function() {
    })
  }
 
-determineCategory();
+determineCategory()
+.then(() => {
+  submitTask({
+    "task": queryText,
+    "category": results[0] });
+})
 
 
 
@@ -178,7 +183,7 @@ determineCategory();
 
 
 
-    });
+});
 
 
 

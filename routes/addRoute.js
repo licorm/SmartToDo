@@ -7,10 +7,11 @@ const queryString = `INSERT INTO tasks(user_id, category_type, name, description
 const description = 'Wanting to ';
 const addTask = (db) => {
   router.post('/', (req, res) => {
-    console.log('task', req.body.task);
+    console.log('task', req.body);
     console.log('user_id', req.session.user_id)
     const user_id = req.session.user_id;
     const queryText = req.body.task;
+    const category = req.body.category;
 
     if (queryText.includes('watch')) {
       db.query(`${queryString}`, [user_id, 'movie', queryText, `${description} ${queryText}`])
@@ -48,7 +49,7 @@ const addTask = (db) => {
         console.log(error);
       })
     }
-    const category = fetchApi(queryText);
+
     console.log('category', category);
 
     db.query(`${queryString}`, [user_id, category, queryText, `${description} ${queryText}`])
@@ -65,4 +66,4 @@ const addTask = (db) => {
   return router;
 }
 
-exports.addTask = addTask;
+module.exports = addTask;
