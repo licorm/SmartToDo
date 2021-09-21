@@ -4,7 +4,6 @@ const router  = express.Router();
 
 const queryString = `INSERT INTO tasks(user_id, category_type, name, description)
                     VALUES ($1, $2, $3, $4)`;
-const description = 'Wanting to ';
 const addTask = (db) => {
   router.post('/', (req, res) => {
     console.log('task', req.body);
@@ -29,7 +28,7 @@ const addTask = (db) => {
     if (req.body.category === 'nocat') {
       categoryString += ``;
     }
-
+    
     db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
     .then((response) => {
       res.redirect('/');
