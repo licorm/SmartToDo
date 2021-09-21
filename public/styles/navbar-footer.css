@@ -19,6 +19,18 @@
 .navbar-brand{
   font-size: 3em;
 }
+.expandButton{
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+.expandButton:focus {
+ 
+  outline: none;
+}
 
 /* Footer styles--- */
 footer{

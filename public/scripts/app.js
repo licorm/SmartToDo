@@ -1,4 +1,11 @@
 $(() => {
+
+  $(".userInfo").hide(); // Hides the errorMessage Div
+
+  $('.expandButton').click(function(){  // UserIngo form slides , when the icon is clicked 
+    $('.userInfo').toggle('slow');
+});
+
   // $.ajax({
   //   method: "GET",
   //   url: "/api/users"
