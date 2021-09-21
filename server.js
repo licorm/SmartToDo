@@ -58,7 +58,7 @@ app.use('/login', loginRouter(db))
 app.use('/', addRoute(db));
 app.use('/delete', deleteRoute(db));
 
-app.use('/tasks', getTasks(db)); // Add a oute fot tasks from databade 
+app.use('/tasks', getTasks(db)); // Add a route for tasks from databade 
 
 
 // Home page
