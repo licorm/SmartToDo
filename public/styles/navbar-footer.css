@@ -11,6 +11,8 @@
   align-items: center;
   position: sticky;
   font-family: 'Bangers', cursive;
+  position: sticky;
+  
 }
 .navbar-light .navbar-toggler {
   color: rgba(0,0,0,.5);

@@ -93,6 +93,7 @@ h5{
   background-color:  #3F72AF;
 }
 .far.fa-trash-alt{
+  color:#033c79;
   float:right;
   margin-left: 3px;
 }
@@ -102,6 +103,21 @@ h5{
 .fa-plus:hover{
   color:red;
 }
+
+.deleteButton{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  
+  }
+.deleteButton:focus {
+   
+    outline: none;
+  }
+
 
 /* media query for small screens(400px-768px) */
 
