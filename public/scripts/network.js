@@ -5,3 +5,10 @@ const submitTask = function(data) {
     data,
   });
 }
+
+function getTask() {
+  return $.ajax({
+    method: "GET",
+    url: "/tasks",
+  });
+}

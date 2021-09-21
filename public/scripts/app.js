@@ -21,7 +21,7 @@ $(() => {
     ${obj.name}
   </div>
   <i class="far fa-trash-alt"></i></li>`);
-    
+
     const type = obj.category_type;
     if(type === 'books'){
       $('#books').append(taskName);

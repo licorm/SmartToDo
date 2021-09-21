@@ -8,7 +8,7 @@ const addTask = (db) => {
   router.post('/', (req, res) => {
     console.log('task', req.body);
     console.log('user_id', req.session.user_id)
-    const user_id = req.session.user_id;
+    const user_id = 2;
     const queryText = req.body.task;
     const category = req.body.category;
     let categoryString = "Wanting to ";
@@ -28,7 +28,7 @@ const addTask = (db) => {
     if (req.body.category === 'nocat') {
       categoryString += ``;
     }
-    
+
     db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
     .then((response) => {
       res.redirect('/');
