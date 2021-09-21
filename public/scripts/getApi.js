@@ -19,7 +19,7 @@ const $submitForm = $(`
 
   const data = $(this).parents().children().find('#task').serialize();
   let queryText = data.slice(5)
-  
+
   const unencode = decodeURI(queryText)
   console.log(unencode)
   if (queryText.includes('watch')) {
@@ -75,7 +75,7 @@ const fetchYelp = function() {
   for (let i = 0; i < response.businesses.length; i++) {
     console.log('i', i);
     restaurantResults.push(response.businesses[i].name)
-    
+
   }
   for (const element of restaurantResults) {
     let isRestaurant = element.toString();
@@ -145,7 +145,7 @@ const fetchWolfram = function() {
   .done(function (response) {
      console.log('wolfram response:', response.queryresult.datatypes)
      const dataType = response.queryresult.datatypes
-    
+
     if (dataType.toLowerCase() === 'book') {
       results.push('book');
       return results;
@@ -181,23 +181,6 @@ const fetchWolfram = function() {
  }
 
 
-
-
- const determineCategory = function() {
-  return fetchYelp()
-   .then(fetchDandelion)
-   .catch(error => {
-    return;
-   })
-   .then(fetchWolfram)
-   .then(() => {
-     if (results.length === 0 || results.length > 1)
-     results.push('nocat')
-     console.log(results)
-     return results;
-
-   })
- }
 
 determineCategory()
 .then(() => {
