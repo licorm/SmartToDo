@@ -118,6 +118,11 @@ h5{
     outline: none;
   }
 
+.stroked {
+  color: #909bb1;
+  text-decoration: line-through;
+  text-shadow: .3px .3px .3px #687386;
+}
 
 /* media query for small screens(400px-768px) */
 
