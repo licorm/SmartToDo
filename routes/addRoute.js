@@ -41,7 +41,7 @@ const addTask = (db) => {
       wolfram(queryText)
       .then((category) => {
         console.log('category', category)
-        if (category === 'expandedfood' || category === 'consumerproductspte' || category === 'product') {
+        if (category === 'products') {
           categoryString += 'buy '
           db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
           .then((data) => {
