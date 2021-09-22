@@ -73,7 +73,7 @@ $(() => {
 
           if (obj.completed === false) {
 
-            const taskName = $(`<li class="list-group-item" draggable="true"><div class="form-check" >
+            const taskName = $(`<li class="list-group-item"><div class="form-check" >
     <input class="form-check-input" type="checkbox"  id="flexCheckDefault" data-id=${obj.id} data-type=${obj.category_type}>
     ${obj.name}
   </div>
