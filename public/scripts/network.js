@@ -5,3 +5,31 @@ const submitTask = function(data) {
     data,
   });
 }
+
+function getTask() {
+  return $.ajax({
+    method: "GET",
+    url: "/tasks",
+  });
+}
+
+const deleteTask = function(data) {
+  return $.ajax({
+    method: "POST",
+
+
+
+    url: "/delete",
+
+    data,
+  });
+}
+
+const markComplete = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/completetask",
+    data,
+  });
+
+}
