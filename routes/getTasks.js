@@ -5,7 +5,7 @@ const router  = express.Router();
 
 const getTasks = (db) => {
   router.get("/", (req, res) => {
-    let query = `SELECT * FROM tasks ORDER BY category_type`;
+    let query = `SELECT * FROM tasks ORDER BY id`;
     db.query(query)
       .then(data => {
         const categoties = data.rows;
@@ -19,7 +19,7 @@ const getTasks = (db) => {
   });
 
   return router;
-  
+
 };
 
 module.exports = getTasks;

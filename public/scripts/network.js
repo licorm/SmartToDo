@@ -16,7 +16,11 @@ function getTask() {
 const deleteTask = function(data) {
   return $.ajax({
     method: "POST",
-    url: "/",
+
+
+
+    url: "/delete",
+
     data,
   });
 }
@@ -27,4 +31,5 @@ const markComplete = function(data) {
     url: "/completetask",
     data,
   });
+
 }

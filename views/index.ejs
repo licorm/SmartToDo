@@ -52,7 +52,7 @@
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
                 <ul class="list-group" id="restaurants">
-      
+
                 </ul>
               </div>
             </div>
@@ -69,7 +69,7 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
               <div class="card-body">
                 <ul class="list-group" id="books">
-      
+
                 </ul>
               </div>
             </div>
@@ -86,7 +86,7 @@
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
               <div class="card-body">
                 <ul class="list-group" id="movie">
-      
+
                 </ul>
               </div>
             </div>
@@ -104,7 +104,7 @@
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
               <div class="card-body">
                 <ul class="list-group" id="products">
-      
+
                 </ul>
               </div>
             </div>
@@ -121,7 +121,7 @@
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
               <div class="card-body">
                 <ul class="list-group" id="nocat">
-      
+
                 </ul>
               </div>
             </div>
@@ -136,31 +136,40 @@
       <div class="userName"> Hello, Name</div>
       <!-- Add new task form -->
       <main id="submitform">
-        
+
       </main>
       <!-- List on unfinished tasks -->
       <div class="unfinishedTasks">
       <h5> Unfinished tasks </h5>
       <ul class="list-group">
-      <li class="list-group-item ">
+      <li class="list-group-item" >
         Restaurants
-        <span class="resCount badge badge-primary badge-pill">14</span>
+        <output class="badge badge-primary badge-pill" id="restaurantUncomplete"></output>
       </li>
-      <li class="list-group-item ">
+      <li class="list-group-item " >
         Movies
-        <span class="movieCount badge badge-primary badge-pill">2</span>
+
+        <output class="badge badge-primary badge-pill" id="movieUncomplete"></output>
+
+
+
       </li>
-      <li class="list-group-item ">
+      <li class="list-group-item" >
         Books
-        <span class="booksCount badge badge-primary badge-pill">1</span>
+
+        <output class="badge badge-primary badge-pill" id="bookUncomplete"></output>
+
       </li>
-      <li class="list-group-item ">
+      <li class="list-group-item" >
         Products
-        <span class="productsCount badge badge-primary badge-pill">1</span>
+
+        <output class="badge badge-primary badge-pill" id="productsUncomplete"></output>
+
       </li>
       <li class="list-group-item ">
         No Category
-        <span class="nocatCount productsCount badge badge-primary badge-pill">1</span>
+        <output class="nocatCount productsCount badge badge-primary badge-pill" id="nocatUncomplete"></output>
+
       </li>
       </ul>
       </div>
@@ -179,7 +188,10 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/network.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
-  <script type="text/javascript" src="/scripts/addTask.js"></script>
+  <script type="text/javascript" src="/scripts/getApi.js"></script>
+
+
+
 
 </body>
 
