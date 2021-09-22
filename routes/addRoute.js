@@ -59,7 +59,6 @@ const addTask = (db) => {
           categoryString += 'read '
           db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
           .then((data) => {
-            console.log(data.rows);
             res.json(data.rows[0]);
           })
         } else {

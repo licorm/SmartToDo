@@ -5,7 +5,6 @@ $(() => {
   });
 
   //function for fetching tweets from /tweets
-  const loadTasks = function() {
 
 
 
@@ -67,9 +66,6 @@ $(() => {
     }
    })
 
-}
-
-  loadTasks();
 
   $(document).on("click", ".deleteButton", function () {
     const $taskToDelete = $(this).parent();
