@@ -1,6 +1,8 @@
 
 $(() => {
 
+
+
   const $submitForm = $(`
   <form id="addTask" class="createForm" method="POST" action="/">
         <label class="sr-only">Name</label>
@@ -60,22 +62,28 @@ $(() => {
         console.log('response:', response.length)
         let length = response.length - 1
         const task = response[length]
-        const taskName = $(`<li class="list-group-item"><div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        const $taskName = $(`<li class="list-group-item"><div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id=${task.id}>
     ${task.name}
   </div>
   <i class="far fa-trash-alt"></i></li>`);
 
     const type = task.category_type;
-    if(type === 'books'){
-      $('#books').append(taskName);
+    console.log(type)
+    if(type === 'book'){
+      $('#books').append($taskName);
     }else if(type === 'movie'){
-      $('#movie').append(taskName )
-    }else if(type === 'restaurants'){
-      $('#restaurants').append(taskName )
-    }else if(type === 'products'){
-      $('#products').append(taskName )
+      $('#movie').append($taskName )
+    }else if(type === 'restaurant'){
+      $('#restaurants').append($taskName )
+    }else if(type === 'product'){
+      $('#products').append($taskName )
     }
+
+    $("#movieUncomplete").text(moviecount)
+    $("#restaurantUncomplete").text(restaurantcount)
+    $("#bookUncomplete").text(bookcount)
+    $("#productsUncomplete").text(productcount)
       })
     .then(() => {
       $("#addTask").trigger("reset");
@@ -234,29 +242,35 @@ $(() => {
       return getTask();
      })
      .then((response) => {
-       console.log('response:', response.length)
-       let length = response.length - 1
-       const task = response[length]
-       const taskName = $(`<li class="list-group-item"><div class="form-check">
-   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-   ${task.name}
- </div>
- <i class="far fa-trash-alt"></i></li>`);
+      console.log('response:', response.length)
+      let length = response.length - 1
+      const task = response[length]
+      const $taskName = $(`<li class="list-group-item"><div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id=${task.id}>
+  ${task.name}
+</div>
+<i class="far fa-trash-alt"></i></li>`);
 
-   const type = task.category_type;
-   if(type === 'books'){
-     $('#books').append(taskName);
-   }else if(type === 'movie'){
-     $('#movie').append(taskName )
-   }else if(type === 'restaurants'){
-     $('#restaurants').append(taskName )
-   }else if(type === 'products'){
-     $('#products').append(taskName )
-   }
-     })
-   .then(() => {
-     $("#addTask").trigger("reset");
-   })
+  const type = task.category_type;
+  console.log(type)
+  if(type === 'book'){
+    $('#books').append($taskName);
+  }else if(type === 'movie'){
+    $('#movie').append($taskName )
+  }else if(type === 'restaurant'){
+    $('#restaurants').append($taskName )
+  }else if(type === 'product'){
+    $('#products').append($taskName )
+  }
+
+  $("#movieUncomplete").text(moviecount)
+    $("#restaurantUncomplete").text(restaurantcount)
+    $("#bookUncomplete").text(bookcount)
+    $("#productsUncomplete").text(productcount)
+    })
+  .then(() => {
+    $("#addTask").trigger("reset");
+  })
 
     }
 
