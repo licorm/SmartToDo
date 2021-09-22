@@ -22,24 +22,108 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light" id="navbarId">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" data-target=".multi-collapse" aria-controls="noCat resCard booksCard movieCard prodCard">
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand">TODO  list</a>
+
       <button class="expandButton"><i class="fas fa-plus"></i> </button>
-      <!-- <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-      </div> -->
       </nav>
       <!-- Main content -->
       <div class= "container">
-      <!-- Collapsible categorie cards -->
+      <!-- Collapsible categorie cards  -->
+
       <div class="listCards">
+        <div class="card">
+          <div class="card-header">
+            <h5>
+              <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#resCard"
+                aria-expanded="false" aria-controls="resCard">
+                Restaurants
+              </button>
+            </h5>
+          </div>
+          <div class="collapse multi-collapse" id="resCard">
+            <div class="card-body">
+              <ul class="list-group" id="restaurants">
+      
+              </ul>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <div class="card-header">
+            <h5>
+              <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#booksCard"
+                aria-expanded="false" aria-controls="booksCard">
+                Books
+              </button>
+            </h5>
+          </div>
+          <div class="collapse multi-collapse" id="booksCard">
+            <div class="card-body">
+              <ul class="list-group" id="books">
+      
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h5>
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#movieCard"
+                aria-expanded="false" aria-controls="movieCard">
+                Movies
+              </button>
+            </h5>
+          </div>
+          <div class="collapse multi-collapse" id="movieCard">
+            <div class="card-body">
+              <ul class="list-group" id="movie">
+      
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h5>
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#prodCard"
+                aria-expanded="false" aria-controls="prodCard">
+                Products
+              </button>
+            </h5>
+          </div>
+          <div class="collapse multi-collapse" id="prodCard">
+            <div class="card-body">
+              <ul class="list-group" id="products">
+      
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h5>
+              <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#noCat" aria-expanded="false"
+                aria-controls="noCat">
+                No Categorie
+              </button>
+            </h5>
+          </div>
+          <div class="collapse multi-collapse" id="noCat">
+            <div class="card-body">
+              <ul class="list-group" id="nocat">
+      
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="listCards">
         <div id="accordion">
+
           <div class="card">
             <div class="card-header">
               <h5 class="mb-0">
@@ -57,6 +141,8 @@
               </div>
             </div>
           </div>
+
+
           <div class="card">
             <div class="card-header">
               <h5 class="mb-0">
@@ -66,7 +152,7 @@
                 </button>
               </h5>
             </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" >
               <div class="card-body">
                 <ul class="list-group" id="books">
                   <p></p>
@@ -130,13 +216,17 @@
 
 
         </div>
-      </div>
+      </div> -->
       <!-- User personal information -->
       <div class="userInfo">
       <div class="userName"> Hello, Name</div>
       <!-- Add new task form -->
       <main id="submitform">
-
+        <form id="addTask" class="createForm" method="POST" action="/">
+          <label class="sr-only">Name</label>
+          <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Add Something" id="task" name="task">
+          <button type="submit" class="btn btn-primary mb-2">Add</button>
+          </form>
       </main>
       <!-- List on unfinished tasks -->
       <div class="unfinishedTasks">
@@ -189,6 +279,7 @@
   <script type="text/javascript" src="/scripts/network.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/getApi.js"></script>
+
 
 
 

@@ -81,7 +81,7 @@ h5{
   color:#033c79;
   font-size: 1em;
 }
-.btn.btn-link.collapsed:focus {
+.btn.btn-link:hover {
    text-decoration: none; 
   }
 
