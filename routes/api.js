@@ -44,7 +44,7 @@ const wolfram = async function(queryText) {
     if (dataType === 'Book') {
       results = 'book';
     } else if (dataType=== 'ExpandedFood' || dataType === 'ConsumerProductsPTE' || dataType.toLowerCase() === 'Product') {
-      results = 'product'
+      results = 'products'
     } else if (dataType.toLowerCase().includes('movie') || dataType === 'TelevisionProgram') {
       results = 'movie'
     }
