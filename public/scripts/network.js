@@ -33,3 +33,11 @@ const markComplete = function(data) {
   });
 
 }
+
+const changeCat = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/changeCategory",
+    data,
+  });
+}

@@ -50,6 +50,7 @@ const addRoute = require('./routes/addRoute');
 const deleteRoute = require('./routes/deleteRoute');
 const getTasks = require('./routes/getTasks');
 const completeTask = require('./routes/completeTask');
+const changeCategory = require('./routes/changeCategory');
 
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -62,6 +63,7 @@ app.use('/delete', deleteRoute(db));
 
 app.use('/completetask', completeTask(db));
 app.use('/tasks', getTasks(db)); // Add a route for tasks from databade
+app.use('/changeCategory', changeCategory(db));
 
 
 // Home page
