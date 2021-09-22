@@ -38,14 +38,14 @@ $(() => {
 
       if (type === 'book') {
         $('#books').append(taskName);
-        countObj.book += 1;
+        countObj.books += 1;
       } else if (type === 'movie') {
         $('#movie').append(taskName);
         countObj.movie += 1;
       } else if (type === 'restaurant') {
         $('#restaurants').append(taskName);
         countObj.restaurant += 1;
-      } else if (type === 'products') {
+      } else if (type === 'product') {
         $('#products').append(taskName);
         countObj.products += 1;
       } else {
@@ -76,7 +76,7 @@ $(() => {
   $(document).on('change', '#flexCheckDefault' , function(event) {
     console.log(event.target.dataset.id)
     markComplete({'id': event.target.dataset.id})
-    .then(loadTasks())
+
     $(this).parent().css("color", "red");
     $(this).parent().css("text-decoration", "line-through");
   })
