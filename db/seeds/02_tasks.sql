@@ -1,4 +1,4 @@
 INSERT INTO tasks (user_id, category_type, name, description, completed) VALUES
-(2, 'books', 'Ready Player One', 'In 2045 the planet is on the brink of chaos and collapse, but people find salvation in the OASIS: an expansive virtual reality universe created by eccentric James Halliday.', false),
-(2, 'movie', 'Stand By Me', 'After learning that a stranger has been accidentally killed near their rural homes, four Oregon boys decide to go see the body.', true),
-(2, 'products', 'Green Tea', 'A brewed green tea is typically green, yellow or light brown in color, and its flavor profile can range from grass-like and toasted (pan fired) to vegetal, sweet and seaweed-like (steamed).', false); 
+(2, 'book', 'Ready Player One', 'want to read Ready Player One', false),
+(2, 'movie', 'Stand By Me', 'want to watch Stand By Me', true),
+(2, 'product', 'Green Tea', 'want to buy green tea', false); 

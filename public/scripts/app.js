@@ -6,12 +6,13 @@ $(() => {
 
   $.get('/tasks', function (data) {
     const countObj = {   
-      books: 0,
+      book: 0,
       movie: 0,
-      products: 0,
-      restaurants: 0,
+      product: 0,
+      restaurant: 0,
       nocat: 0
     }
+
 
     for (const obj of data) {
       const taskName = $(`<li class="list-group-item"><div class="form-check">
@@ -22,13 +23,13 @@ $(() => {
       const type = obj.category_type;
       if (type === 'book') {
         $('#books').append(taskName);
-        countObj.books += 1;
+        countObj.book += 1;
       } else if (type === 'movie') {
         $('#movie').append(taskName);
         countObj.movie += 1;
-      } else if (type === 'restaurants') {
+      } else if (type === 'restaurant') {
         $('#restaurants').append(taskName);
-        countObj.restaurants += 1;
+        countObj.restaurant += 1;
       } else if (type === 'product') {
         $('#products').append(taskName);
         countObj.products += 1;
@@ -37,6 +38,7 @@ $(() => {
         countObj.nocat += 1;
       }
     }
+    
 // Updates the count of uncompleted tasks 
     $(".resCount").text(countObj.books);
     $(".movieCount").text(countObj.movie);
