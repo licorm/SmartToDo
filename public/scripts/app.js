@@ -57,11 +57,11 @@ $(() => {
 
 // Updates the count of uncompleted tasks
 
-    $(".resCount").text(countObj.books);
-    $(".movieCount").text(countObj.movie);
-    $(".booksCount").text(countObj.restaurants);
-    $(".productsCount").text(countObj.products);
-    $(".nocatCount").text(countObj.nocat);
+    $("#bookUncomplete").text(countObj.books);
+    $("#movieUncomplete").text(countObj.movie);
+    $("#restaurantUncomplete").text(countObj.restaurant);
+    $("#productsUncomplete").text(countObj.products);
+    $("#nocatUncomplete").text(countObj.nocat);
 
   }
 }
