@@ -15,9 +15,10 @@
   align-items: center;
   flex-direction: column;
   margin-left:10%;
-  height: 450px;
+  height: 100%;
   border-radius: 0.7em;
   background-color: #eef0f3;;
+  
 }
 .userInfo:hover {
   box-shadow: 5px 3px 3px rgba(33,33,33,.2); 
@@ -114,7 +115,6 @@ h5{
   
   }
 .deleteButton:focus {
-   
     outline: none;
   }
 
