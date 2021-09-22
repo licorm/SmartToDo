@@ -7,6 +7,7 @@ $(() => {
     $('.userInfo').toggle('slow');
   });
 
+
   const countObj = {
     book: 0,
     movie: 0,
@@ -138,6 +139,7 @@ $(() => {
       // .then(() => {
       //   countItems("books", "movie", "restaurants", "products", "nocat");
       // })
+
 
     $(this).parent().css("color", "red");
     $(this).parent().css("text-decoration", "line-through");
