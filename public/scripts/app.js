@@ -1,14 +1,23 @@
 $(() => {
+
+  $(".userInfo").hide(); // Hides the userInfo Div
+  $('.expandButton').click(function () {  // UserIngo form shows , when the plus icon is clicked
+    $('.userInfo').toggle('slow');
+  });
+
   //function for fetching tweets from /tweets
   const loadTasks = function() {
     $.ajax("/tasks", { method: "GET" })
       .then(function(data) {
 
 
-    let bookcount = 0;
-    let moviecount = 0;
-    let restaurantcount = 0;
-    let productcount = 0;
+    const countObj = {
+      books: 0,
+      movie: 0,
+      products: 0,
+      restaurants: 0,
+      nocat: 0
+      }
 
   for(const obj of data){
     console.log(obj)
@@ -19,29 +28,33 @@ $(() => {
     <input class="form-check-input" type="checkbox"  id="flexCheckDefault" data-id=${obj.id}>
     ${obj.name}
   </div>
-  <i class="far fa-trash-alt"></i></li>`);
+  <button class="deleteButton" id ="${obj.id}"><i class="far fa-trash-alt"></i></li> </button>`);
     const type = obj.category_type;
-    if(type === 'book'){
-      bookcount += 1;
-      $('#books').append(taskName);
-    }else if(type === 'movie'){
-      moviecount += 1;
-      $('#movie').append(taskName )
-    }else if(type === 'restaurants'){
-      restaurantcount += 1;
-      $('#restaurants').append(taskName )
-    }else if(type === 'products'){
-      productcount += 1;
-      $('#products').append(taskName )
+    const type = obj.category_type;
+      if (type === 'book') {
+        $('#books').append(taskName);
+        countObj.books += 1;
+      } else if (type === 'movie') {
+        $('#movie').append(taskName);
+        countObj.movie += 1;
+      } else if (type === 'restaurants') {
+        $('#restaurants').append(taskName);
+        countObj.restaurants += 1;
+      } else if (type === 'product') {
+        $('#products').append(taskName);
+        countObj.products += 1;
+      } else {
+        $('#nocat').append(taskName);
+        countObj.nocat += 1;
+      }
+
+    // Updates the count of uncompleted tasks
+    $(".resCount").text(countObj.books);
+    $(".movieCount").text(countObj.movie);
+    $(".booksCount").text(countObj.restaurants);
+    $(".productsCount").text(countObj.products);
+    $(".nocatCount").text(countObj.nocat);
     }
-
-    $("#movieUncomplete").text(moviecount)
-    $("#restaurantUncomplete").text(restaurantcount)
-    $("#bookUncomplete").text(bookcount)
-    $("#productsUncomplete").text(productcount)
-  }
-
-
   }
       });
   };
@@ -57,6 +70,19 @@ $(() => {
     $(this).parent().css("text-decoration", "line-through");
   })
 
+  $(document).on("click", ".deleteButton", function () {
+    const $taskToDelete = $(this).parent();
+    $.ajax({
+      url: `/delete`,
+      data: { taskId: $(this).attr("id") },
+      method: 'POST',
+      success: function (data) {
+        $taskToDelete.hide();
+      }
+    });
+  });
 
 
 });
+
+

@@ -26,7 +26,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand">TODO  list</a>
-      <i class="fas fa-plus"></i>
+      <button class="expandButton"><i class="fas fa-plus"></i> </button>
       <!-- <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
@@ -36,76 +36,100 @@
       </div> -->
       </nav>
       <!-- Main content -->
-
       <div class= "container">
       <!-- Collapsible categorie cards -->
       <div class="listCards">
-      <div  id="accordion">
-      <div class="card">
-        <div class="card-header" >
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              Restaurants
-            </button>
-          </h5>
-        </div>
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body">
-            <ul class="list-group" id="restaurants">
-
-            </ul>
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                  aria-controls="collapseOne">
+                  Restaurants
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <ul class="list-group" id="restaurants">
+      
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" >
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Books
-            </button>
-          </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            <ul class="list-group" id="books">
-
-            </ul>
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                  aria-controls="collapseTwo">
+                  Books
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <ul class="list-group" id="books">
+      
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" >
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Movies
-            </button>
-          </h5>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-          <div class="card-body">
-            <ul class="list-group" id="movie">
-
-            </ul>
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                  aria-expanded="false" aria-controls="collapseThree">
+                  Movies
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <ul class="list-group" id="movie">
+      
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="card">
-      <div class="card-header" >
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-            Products
-          </button>
-        </h5>
-      </div>
-      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion" >
-        <div class="card-body">
-          <ul class="list-group" id="products">
 
-          </ul>
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
+                  aria-expanded="false" aria-controls="collapseFour">
+                  Products
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <div class="card-body">
+                <ul class="list-group" id="products">
+      
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
+                  aria-expanded="false" aria-controls="collapseFour">
+                  No Categorie
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <div class="card-body">
+                <ul class="list-group" id="nocat">
+      
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+
         </div>
-      </div>
-      </div>
-      </div>
       </div>
       <!-- User personal information -->
       <div class="userInfo">
@@ -120,19 +144,39 @@
       <ul class="list-group">
       <li class="list-group-item" >
         Restaurants
+<<<<<<< HEAD
         <span class="badge badge-primary badge-pill" id="restaurantUncomplete"></span>
+=======
+        <span class="resCount badge badge-primary badge-pill">14</span>
+>>>>>>> d88974b5e20cb2456e96c9949c9a0c5e59f0943f
       </li>
       <li class="list-group-item " >
         Movies
+<<<<<<< HEAD
         <span class="badge badge-primary badge-pill" id="movieUncomplete">2</span>
+=======
+        <span class="movieCount badge badge-primary badge-pill">2</span>
+>>>>>>> d88974b5e20cb2456e96c9949c9a0c5e59f0943f
       </li>
       <li class="list-group-item" >
         Books
+<<<<<<< HEAD
         <span class="badge badge-primary badge-pill" id="bookUncomplete"></span>
+=======
+        <span class="booksCount badge badge-primary badge-pill">1</span>
+>>>>>>> d88974b5e20cb2456e96c9949c9a0c5e59f0943f
       </li>
       <li class="list-group-item" >
         Products
+<<<<<<< HEAD
         <span class="badge badge-primary badge-pill" id="productsUncomplete"></span>
+=======
+        <span class="productsCount badge badge-primary badge-pill">1</span>
+      </li>
+      <li class="list-group-item ">
+        No Category
+        <span class="nocatCount productsCount badge badge-primary badge-pill">1</span>
+>>>>>>> d88974b5e20cb2456e96c9949c9a0c5e59f0943f
       </li>
       </ul>
       </div>
