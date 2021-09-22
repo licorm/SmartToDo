@@ -62,27 +62,29 @@ const dandelion = async function(queryText) {
   let response = await axios
   .get(`https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`)
   .then((response) => {
-    let i = 0;
-    while (i < 6) {
-      dandelionResults.push(response.data.annotations[0].categories[i])
-      i++
-    }
-    console.log('dandelionResults', dandelionResults)
-    if (dandelionResults.length > 0) {
-      for (const element of dandelionResults) {
-        console.log('element', element)
-        console.log('typeof', typeof element)
-        // const isBook = element.includes('novel')
-        // const isMovie = element.includes('film')
-        // const isTv = element.includes('television')
-        // console.log(isBook);
-        if (element.includes('novel')) {
-          results = 'book'
-          return results;
-        }
-        if (element.includes('film') || element.includes('television')) {
-          results = 'movie'
-          return results;
+    if (response.data.annotations.length > 0) {
+      let i = 0;
+      while (i < 6) {
+        dandelionResults.push(response.data.annotations[0].categories[i])
+        i++
+      }
+      console.log('dandelionResults', dandelionResults)
+      if (dandelionResults.length > 0) {
+        for (const element of dandelionResults) {
+          console.log('element', element)
+          console.log('typeof', typeof element)
+          // const isBook = element.includes('novel')
+          // const isMovie = element.includes('film')
+          // const isTv = element.includes('television')
+          // console.log(isBook);
+          if (element.includes('novel')) {
+            results = 'book'
+            return results;
+          }
+          if (element.includes('film') || element.includes('television')) {
+            results = 'movie'
+            return results;
+          }
         }
       }
     }
