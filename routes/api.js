@@ -3,7 +3,7 @@ const { response } = require('express');
 
 const yelp = async function(queryText) {
   console.log('queryText', queryText)
-  let results = "nocat";
+  let results = "";
   let response = await axios
   .get(`https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
     {
@@ -39,7 +39,7 @@ const wolfram = async function(queryText) {
 
   let response = await axios
   .get(`http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`)
-  .then(function (response) {
+  .then((response) => {
     const dataType = response.data.queryresult.datatypes;
     if (dataType === 'Book') {
       results = 'book';
@@ -53,7 +53,43 @@ const wolfram = async function(queryText) {
   return results;
 };
 
+const dandelion = async function(queryText) {
+  let results = "nocat";
+  const dandelionResults = [];
+  let response = await axios
+  .get(`https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`)
+  .then((response) => {
+    let i = 0;
+    while (i < 6) {
+      dandelionResults.push(response.data.annotations[0].categories[i])
+      i++
+    }
+    console.log('dandelionResults', dandelionResults)
+    if (dandelionResults.length > 0) {
+      for (const element of dandelionResults) {
+        console.log('element', element)
+        console.log('typeof', typeof element)
+        // const isBook = element.includes('novel')
+        // const isMovie = element.includes('film')
+        // const isTv = element.includes('television')
+        // console.log(isBook);
+        if (element.includes('novel')) {
+          results = 'book'
+          return results;
+        }
+        if (element.includes('film') || element.includes('television')) {
+          results = 'movie'
+          return results;
+        }
+      }
+    }
+
+  })
+  return results;
+}
+
 module.exports = { 
   yelp, 
-  wolfram
+  wolfram,
+  dandelion
 }

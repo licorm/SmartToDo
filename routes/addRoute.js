@@ -1,7 +1,6 @@
 const express = require('express');
-const { yelp, wolfram } = require('./api');
+const { yelp, wolfram, dandelion } = require('./api');
 const router  = express.Router();
-const getTasks = require('./getTasks');
 //const fetchApi = require('../public/scripts/getApi');
 
 const queryString = `INSERT INTO tasks(user_id, category_type, name, description)
@@ -71,13 +70,28 @@ const addTask = (db) => {
             .then((data) => {
               res.json(data.rows[0]);
             })
-          }
-          if (category === 'nocat') {
-            db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
-            .then((data) => {
-              res.json(data.rows[0]);
+          } else {
+            dandelion(queryText)
+            .then((category) => {
+              if (category === 'book') {
+                db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
+                .then((data) => {
+                res.json(data.rows[0]);
+                })
+              } else if (category === 'movie') {
+                db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
+                .then((data) => {
+                res.json(data.rows[0]);
+                })
+              } 
+              if (category === 'nocat') {
+                db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
+                .then((data) => {
+                  res.json(data.rows[0]);
+                })
+              } 
             })
-          } 
+          }
           
         })
       }
