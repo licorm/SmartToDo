@@ -3,6 +3,7 @@ const { response } = require('express');
 
 const yelp = async function(queryText) {
   console.log('queryText', queryText)
+
   let results = "nocat";
   let response = await axios
   .get(`https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
@@ -16,7 +17,7 @@ const yelp = async function(queryText) {
     let i = 0;
     for (let i = 0; i < response.data.businesses.length; i++) {
       restaurantResults.push(response.data.businesses[i].name)
-  
+
     }
     for (const element of restaurantResults) {
       let isRestaurant = element.toString();
@@ -27,10 +28,10 @@ const yelp = async function(queryText) {
       if (isRestaurant.toLowerCase() === queryText.toLowerCase()) {
         results = 'restaurant'
         break
-      } 
+      }
     }
     })
-    
+
     return results;
 };
 
@@ -53,7 +54,7 @@ const wolfram = async function(queryText) {
   return results;
 };
 
-module.exports = { 
-  yelp, 
+module.exports = {
+  yelp,
   wolfram
 }

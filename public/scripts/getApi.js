@@ -21,221 +21,8 @@ $(() => {
 
     const data = $(this).parents().children().find('#task').serialize();
     let queryText = data.slice(5)
-
-    const unencode = decodeURI(queryText)
-    console.log(unencode)
-
-    const userCategory = function(queryText){
-      if (queryText.includes('watch')) {
-        console.log('issa movie')
-        results.push('movie')
-        return results;
-      }
-      if (queryText.includes('read')) {
-        results.push('book')
-        return results;
-      }
-      if (queryText.includes('eat')) {
-        results.push('restaurant')
-        return results;
-      }
-      if (queryText.includes('buy')) {
-        results.push('product')
-        return results;
-      }
-      return false
-    }
-
-    userCategory(queryText);
-
-    if(results.length > 0) {
-      console.log("usercategory results:", results);
-      submitTask({
-        "task": unencode,
-        "category": results[0]
-      })
-      .then(() => {
-       return getTask();
-      })
-      .then((response) => {
-        console.log('response:', response.length)
-        let length = response.length - 1
-        const task = response[length]
-        const $taskName = $(`<li class="list-group-item"><div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id=${task.id}>
-    ${task.name}
-  </div>
-  <i class="far fa-trash-alt"></i></li>`);
-
-    const type = task.category_type;
-    console.log(type)
-    if(type === 'book'){
-      $('#books').append($taskName);
-    }else if(type === 'movie'){
-      $('#movie').append($taskName )
-    }else if(type === 'restaurant'){
-      $('#restaurants').append($taskName )
-    }else if(type === 'product'){
-      $('#products').append($taskName )
-    }
-
-    $("#movieUncomplete").text(moviecount)
-    $("#restaurantUncomplete").text(restaurantcount)
-    $("#bookUncomplete").text(bookcount)
-    $("#productsUncomplete").text(productcount)
-      })
-    .then(() => {
-      $("#addTask").trigger("reset");
-    })
-    }
-
-    if(userCategory(queryText) === false) {
-       //yelp settings
-    const yelpSettings = {
-      "url": `https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
-      "method": "GET",
-      "headers": {
-        "Authorization": "Bearer nxBY2qRdQtx6tQSmpDNElKsuUINdEi_aI_4RDjjvqs3lbzGmgMem__btNaNnT2ruHn28UmFZ1W6Z9zrmjpw0rmyyaEuwGGMc-GSVXD6Q_ffREboy1bP4Po1S6AdGYXYx"
-      }
-    };
-
-    // dandelionSettings
-    const dandelionSettings = {
-      "async": true,
-      "crossDomain": true,
-      "url": `https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`,
-      "method": "GET"
-    };
-
-    //wolframSettings
-    const wolframSettings = {
-      "url": `http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`,
-
-      "method": "GET",
-    };
-
-    const fetchYelp = function() {
-      const restaurantResults = [];
-     return $.ajax(yelpSettings)
-     .then(function (response) {
-      let i = 0;
-      for (let i = 0; i < response.businesses.length; i++) {
-        console.log('i', i);
-        restaurantResults.push(response.businesses[i].name)
-
-      }
-      for (const element of restaurantResults) {
-        let isRestaurant = element.toString();
-        if (isRestaurant.includes("'")) {
-          isRestaurant = isRestaurant.replace("'", "");
-        }
-        if (queryText.includes('%20')) {
-          queryText = queryText.replaceAll('%20', ' ');
-        }
-        console.log('isRestaurant', isRestaurant)
-        console.log('queryText', queryText)
-        if (isRestaurant.toLowerCase() === queryText.toLowerCase()) {
-          console.log('i am here')
-          results.push('restaurant');
-          return results;
-        }
-      }
-
-        console.log("yelp response:", response);
-      })
-
-    }
-
-
-
-    const fetchDandelion = function() {
-
-        let dandelionResults = []
-     return $.ajax(dandelionSettings)
-      .done(function (response) {
-
-        console.log("Dandelion Response:", response);
-        let i = 0;
-        while (i < response.annotations[0].categories.length) {
-          dandelionResults.push(response.annotations[0].categories[i])
-          i++
-        }
-        if (dandelionResults.length > 0) {
-          for (const element of dandelionResults) {
-            const string = element.toString()
-            const isBook = string.includes('novel')
-            const isMovie = string.includes('film')
-            const isTv = string.includes('television')
-
-            if (isBook) {
-              results.push('book')
-
-              return results;
-            }
-            if (isMovie || isTv) {
-              results.push('movie')
-
-              return results;
-            }
-          }
-        }
-
-      })
-
-
-
-    }
-
-    const fetchWolfram = function() {
-
-        return $.ajax(wolframSettings)
-      .done(function (response) {
-         console.log('wolfram response:', response.queryresult.datatypes)
-         const dataType = response.queryresult.datatypes
-
-        if (dataType.toLowerCase() === 'book') {
-          results.push('book');
-          return results;
-        } else if (dataType.toLowerCase() === 'expandedfood' || dataType.toLowerCase() === 'consumerproductspte' || dataType.toLowerCase() === 'product') {
-          results.push('product')
-
-          return results;
-        } else if (dataType.toLowerCase().includes('movie')) {
-           results.push('movie')
-
-           return results;
-         }
-
-
-       })
-
-     }
-
-     const determineCategory = function() {
-      return fetchYelp()
-       .then(fetchDandelion)
-       .catch(error => {
-        return;
-       })
-       .then(fetchWolfram)
-       .then(() => {
-         if (results.length === 0 || results.length > 1)
-         results.push('nocat')
-         console.log(results)
-         return results;
-
-       })
-     }
-
-
-
-    determineCategory()
-    .then(() => {
-      console.log("determineCategoryResults:", results);
-      submitTask({
-        "task": unencode,
-        "category": results[0]
-      })
+    submitTask({
+      "task": queryText
     })
     .then(() => {
       return getTask();
@@ -260,37 +47,28 @@ $(() => {
     $('#restaurants').append($taskName )
   }else if(type === 'product'){
     $('#products').append($taskName )
+  }else if(type === 'nocat'){
+    $('#nocat').append($taskName )
   }
 
-  $("#movieUncomplete").text(moviecount)
-    $("#restaurantUncomplete").text(restaurantcount)
-    $("#bookUncomplete").text(bookcount)
-    $("#productsUncomplete").text(productcount)
+
+
     })
   .then(() => {
     $("#addTask").trigger("reset");
   })
 
-    }
-
-
-
-
-
-
-
-
-
-
 
   })
 
+})
 
 
 
 
 
-  });
+
+
 
 
 
