@@ -28,3 +28,11 @@ const markComplete = function(data) {
     data,
   });
 }
+
+const changeCat = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/changeCategory",
+    data,
+  });
+}

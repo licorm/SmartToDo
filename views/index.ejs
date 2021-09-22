@@ -45,7 +45,7 @@
           </div>
           <div class="collapse multi-collapse" id="resCard">
             <div class="card-body">
-              <ul class="list-group" id="restaurants">
+              <ul class="list-group connectedSortable" id="restaurants" data-category="restaurant">
 
               </ul>
             </div>
@@ -63,7 +63,7 @@
           </div>
           <div class="collapse multi-collapse" id="booksCard">
             <div class="card-body">
-              <ul class="list-group" id="books">
+              <ul class="list-group connectedSortable" id="books" data-category="book">
 
               </ul>
             </div>
@@ -80,7 +80,7 @@
           </div>
           <div class="collapse multi-collapse" id="movieCard">
             <div class="card-body">
-              <ul class="list-group" id="movie">
+              <ul class="list-group connectedSortable" id="movie" data-category="movie">
 
               </ul>
             </div>
@@ -97,7 +97,7 @@
           </div>
           <div class="collapse multi-collapse" id="prodCard">
             <div class="card-body">
-              <ul class="list-group" id="products">
+              <ul class="list-group connectedSortable" id="products" data-category="product">
 
               </ul>
             </div>
@@ -108,13 +108,13 @@
             <h5>
               <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#noCat" aria-expanded="false"
                 aria-controls="noCat">
-                No Categorie
+                No Category
               </button>
             </h5>
           </div>
           <div class="collapse multi-collapse" id="noCat">
             <div class="card-body">
-              <ul class="list-group" id="nocat">
+              <ul class="list-group connectedSortable" id="nocat" data-category="nocat">
 
               </ul>
             </div>
@@ -234,11 +234,7 @@
       <div class="userName"> Hello, Name</div>
       <!-- Add new task form -->
       <main id="submitform">
-        <form id="addTask" class="createForm" method="POST" action="/">
-          <label class="sr-only">Name</label>
-          <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Add Something" id="task" name="task">
-          <button type="submit" class="btn btn-primary mb-2">Add</button>
-          </form>
+
       </main>
       <!-- List on unfinished tasks -->
       <div class="unfinishedTasks">
