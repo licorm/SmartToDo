@@ -45,19 +45,19 @@ const addTask = (db) => {
           categoryString += 'buy '
           db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
           .then((data) => {
-            res.redirect('/');
+            res.json(data);
           })
         } else if (category === 'movie') {
           categoryString += 'watch '
           db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
           .then((data) => {
-            res.redirect('/');
+            res.json(data);
           })
         } else if (category === 'book') {
           categoryString += 'read '
           db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
           .then((data) => {
-            res.redirect('/');
+            res.json(data);
           })
         } else {
         yelp(queryText)
@@ -67,13 +67,13 @@ const addTask = (db) => {
             categoryString += 'eat at'
             db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
             .then((data) => {
-              res.redirect('/');
+              res.json(data);
             })
           }
           if (category === 'nocat') {
             db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
             .then((data) => {
-              res.redirect('/');
+              res.json(data);
             })
           } 
           

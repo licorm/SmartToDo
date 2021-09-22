@@ -8,7 +8,7 @@ $(() => {
     const countObj = {   
       book: 0,
       movie: 0,
-      product: 0,
+      products: 0,
       restaurant: 0,
       nocat: 0
     }
