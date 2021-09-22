@@ -14,12 +14,54 @@ $(() => {
     restaurant: 0,
     nocat: 0
   }
+
   //function for fetching tweets from /tweets
   const loadTasks = function () {
 
 
-    getTask()
+
+   getTask()
       .then(function (data) {
+    // let $bookCount = $("#bookUncomplete");
+    // let $movieCount = $("#movieUncomplete");
+    // let $restaurantCount = $("#restaurantUncomplete");
+    // let $productCount = $("#productsUncomplete");
+    // let $nocatCount = $("#nocatUncomplete");
+
+    // function countItems(listID1, listID2, listID3, listID4, listID5){
+    //   var ul = document.getElementById(listID1);
+    //   console.log(ul)
+    //   var i=0, itemCount1 =0;
+    //   while(ul.getElementsByTagName('li') [i++]) itemCount1++;
+    //   console.log("1:", itemCount1)
+    //   $bookCount.val(itemCount1)
+
+    //   var ul = document.getElementById(listID2);
+    //   console.log(ul)
+    //   var j=0, itemCount2 =0;
+    //   while(ul.getElementsByTagName('li') [i++]) itemCount2++;
+    //   $movieCount.val(itemCount2)
+
+
+    //   var ul = document.getElementById(listID3);
+    //   console.log(ul)
+    //   var k=0, itemCount3 =0;
+    //   while(ul.getElementsByTagName('li') [i++]) itemCount3++;
+    //   $restaurantCount.val(itemCount3)
+
+    //   var ul = document.getElementById(listID4);
+    //   console.log(ul)
+    //   var l=0, itemCount4 =0;
+    //   while(ul.getElementsByTagName('li') [i++]) itemCount4++;
+    //   $productCount.val(itemCount4)
+
+    //   var ul = document.getElementById(listID5);
+    //   console.log(ul)
+    //   var m=0, itemCount5 =0;
+    //   while(ul.getElementsByTagName('li') [i++]) itemCount5++;
+    //   $nocatCount.val(itemCount5)
+
+    //   }
 
         for (const obj of data) {
           console.log(obj.completed)
@@ -51,21 +93,15 @@ $(() => {
               $('#nocat').append(taskName);
               countObj.nocat += 1;
             }
-          // Updates the count of uncompleted tasks
-        let $bookCount = $("#bookUncomplete");
-        $bookCount.val(0 + countObj.book);
-        let $movieCount = $("#movieUncomplete");
-        $movieCount.val(0 + countObj.movie)
-        let $restaurantCount = $("#restaurantUncomplete");
-        $restaurantCount.val(0 + countObj.restaurant)
-        let $productCount = $("#productsUncomplete");
-        $productCount.val(0 + countObj.product)
-        let $nocatCount = $("#nocatUncomplete");
-        $nocatCount.val(0 + countObj.nocat)
-        console.log($productCount.val())
+
+
+            //countItems("books", "movie", "restaurants", "products", "nocat");
+
 
 
           }
+
+
         }
 
       })
@@ -74,7 +110,9 @@ $(() => {
   }
 
 
-  loadTasks();
+  loadTasks()
+
+
 
 
 
