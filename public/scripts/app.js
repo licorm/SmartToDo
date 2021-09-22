@@ -75,7 +75,7 @@ $(() => {
           if (obj.completed === false) {
 
             const taskName = $(`<li class="list-group-item"><div class="form-check" >
-    <input class="form-check-input" type="checkbox"  id="flexCheckDefault" data-id=${obj.id} data-type=${obj.category_type}>
+    <input class="form-check-input stroked" type="checkbox"  id="flexCheckDefault" data-id=${obj.id} data-type=${obj.category_type}">
     ${obj.name}
   </div>
   <button class="deleteButton" id ="${obj.id}"><i class="far fa-trash-alt"></i></li> </button>`);
@@ -127,22 +127,15 @@ $(() => {
 
 
   $(document).on('change', '#flexCheckDefault', function (event) {
-    console.log(event.target.dataset.type)
-
     markComplete({ 'id': event.target.dataset.id })
       .then(() => {
-        $(this).parents().eq(1).hide();
-
-
-
+        $(this).parents().eq(1);
       })
-      // .then(() => {
-      //   countItems("books", "movie", "restaurants", "products", "nocat");
-      // })
 
 
-    $(this).parent().css("color", "red");
-    $(this).parent().css("text-decoration", "line-through");
+    $(this).parent().toggleClass('stroked');
+
+
   })
 
   $(document).on("click", ".deleteButton", function () {
