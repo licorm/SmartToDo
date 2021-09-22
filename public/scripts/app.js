@@ -86,7 +86,7 @@ $(() => {
       .then(() => {
         $(this).parents().eq(1).hide();
 
-        loadTasks();
+
 
       })
 
@@ -100,7 +100,7 @@ $(() => {
     deleteTask({ taskId: $(this).attr("id") })
     .then(() => {
       $taskToDelete.hide();
-      loadTasks();
+
 
     });
   });
