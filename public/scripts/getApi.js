@@ -31,7 +31,7 @@ $(() => {
       console.log('response:', response.length)
       let length = response.length - 1
       const task = response[length]
-      const $taskName = $(`<li class="list-group-item"><div class="form-check" >
+      const $taskName = $(`<li class="list-group-item" draggable="true"><div class="form-check" >
       <input class="form-check-input" type="checkbox"  id="flexCheckDefault" data-id=${task.id} data-type=${task.category_type}>
       ${task.name}
     </div>
