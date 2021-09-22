@@ -3,7 +3,7 @@ const router  = express.Router();
 //const fetchApi = require('../public/scripts/getApi');
 
 const queryString = `UPDATE tasks
-                     SET completed = true
+                     SET completed = NOT completed
                      WHERE id = $1`;
 const completeTask = (db) => {
   router.post('/', (req, res) => {
