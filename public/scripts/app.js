@@ -45,7 +45,7 @@ $(() => {
       } else if (type === 'restaurant') {
         $('#restaurants').append(taskName);
         countObj.restaurant += 1;
-      } else if (type === 'product') {
+      } else if (type === 'products') {
         $('#products').append(taskName);
         countObj.products += 1;
       } else {
