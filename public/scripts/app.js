@@ -18,13 +18,13 @@ $(() => {
   <i class="far fa-trash-alt"></i></li>`);
     
     const type = obj.category_type;
-    if(type === 'books'){
+    if(type === 'book'){
       $('#books').append(taskName);
     }else if(type === 'movie'){
       $('#movie').append(taskName );
-    }else if(type === 'restaurants'){
+    }else if(type === 'restaurant'){
       $('#restaurants').append(taskName);
-    }else if(type === 'products'){
+    }else if(type === 'product'){
       $('#products').append(taskName);
     }else{
       $('#nocat').append(taskName);
