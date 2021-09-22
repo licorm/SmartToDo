@@ -1,4 +1,5 @@
 const express = require('express');
+const { yelp, wolfram } = require('./api');
 const router  = express.Router();
 //const fetchApi = require('../public/scripts/getApi');
 
@@ -10,37 +11,78 @@ const addTask = (db) => {
     console.log('user_id', req.session.user_id)
     const user_id = req.session.user_id;
     const queryText = req.body.task;
-    const category = req.body.category;
+    console.log('queryText', queryText)
     let categoryString = "Wanting to ";
-    console.log(req.body.category.includes('watch'))
-    if (req.body.category === 'movie' && !req.body.task.includes('watch')) {
+    if (req.body.task.includes('watch')) {
        categoryString += `watch `;
-    }
-    if (req.body.category === 'book' && !req.body.category.includes('read')) {
+       db.query(`${queryString}`, [user_id, 'watch', queryText, `${categoryString}${queryText}`])
+       .then((data) => {
+         res.json(data);
+       })
+    } else if (queryText.includes('read')) {
       categoryString += `read `;
-    }
-    if (req.body.category === 'restaurant' && !req.body.category.includes('eat')) {
+      db.query(`${queryString}`, [user_id, 'read', queryText, `${categoryString}${queryText}`])
+       .then((data) => {
+         res.json(data);
+       })
+    } else if (queryText.includes('eat')) {
       categoryString += `eat at `;
-    }
-    if (req.body.category === 'product' && !req.body.category.includes('buy')) {
+      db.query(`${queryString}`, [user_id, 'eat', queryText, `${categoryString}${queryText}`])
+       .then((data) => {
+         res.json(data);
+       })
+    } else if (queryText.includes('buy')) {
       categoryString += `buy `;
+      db.query(`${queryString}`, [user_id, 'products', queryText, `${categoryString}${queryText}`])
+       .then((data) => {
+         res.json(data);
+       })
+    } else {
+      wolfram(queryText)
+      .then((category) => {
+        console.log('category', category)
+        if (category === 'expandedfood' || category === 'consumerproductspte' || category === 'product') {
+          categoryString += 'buy '
+          db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
+          .then((data) => {
+            res.redirect('/');
+          })
+        } else if (category === 'movie') {
+          categoryString += 'watch '
+          db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
+          .then((data) => {
+            res.redirect('/');
+          })
+        } else if (category === 'book') {
+          categoryString += 'read '
+          db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
+          .then((data) => {
+            res.redirect('/');
+          })
+        } else {
+        yelp(queryText)
+        .then((category) => {
+          console.log('category', category)
+          if (category === 'restaurant') {
+            categoryString += 'eat at'
+            db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
+            .then((data) => {
+              res.redirect('/');
+            })
+          }
+          if (category === 'nocat') {
+            db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
+            .then((data) => {
+              res.redirect('/');
+            })
+          } 
+          
+        })
+      }
+      })
     }
-    if (req.body.category === 'nocat') {
-      categoryString += ``;
-    }
-    
-    db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
-    .then((response) => {
-      res.redirect('/');
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-
   })
-
-
+  
   return router;
 }
-
 module.exports = addTask;
