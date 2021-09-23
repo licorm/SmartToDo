@@ -1,5 +1,4 @@
 // The get route to insert tasks to task category from the database
-
 const express = require('express');
 const router  = express.Router();
 
