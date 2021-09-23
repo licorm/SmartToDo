@@ -1,4 +1,4 @@
- #navbarId {
+#navbarId {
   height: 80px;
   width: 100%;
   background-color: #3F72AF;
@@ -20,6 +20,7 @@
 }
 .navbar-brand{
   font-size: 3em;
+  padding-left:15px;
 }
 .expandButton{
   background-color: transparent;
@@ -30,8 +31,21 @@
   outline: none;
 }
 .expandButton:focus {
-
   outline: none;
+}
+.categoriesExpand{
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding:5px;
+}
+.titleBlock{
+  display:flex;
+  justify-content:  space-between;
+  align-items: center;
 }
 
 /* Footer styles--- */
@@ -46,8 +60,4 @@ footer{
   align-items: center;
   font-family: 'Cuprum', sans-serif;
 }
-
-/*  */
-
-
 
