@@ -12,7 +12,7 @@
   position: sticky;
   font-family: 'Bangers', cursive;
   position: sticky;
-  z-index: 1;
+  z-index: 2;
 }
 .navbar-light .navbar-toggler {
   color: rgba(0,0,0,.5);
@@ -30,7 +30,7 @@
   outline: none;
 }
 .expandButton:focus {
- 
+
   outline: none;
 }
 
