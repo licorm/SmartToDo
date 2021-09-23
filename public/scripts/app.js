@@ -206,24 +206,13 @@ $(() => {
 
 
     $(this).parent().toggleClass('stroked');
-<<<<<<< HEAD
-    
-=======
 
 
->>>>>>> 7aac01b725725affebe51daa3fe21f03c7cbf818
-  })
+  });
 
 $(document).on("click", ".deleteButton", function() {
     const $taskToDelete = $(this).parent();
 
-<<<<<<< HEAD
-    deleteTask({
-            taskId: $(this).attr("id")
-        })
-        .then(() => {
-            $taskToDelete.hide();
-=======
     deleteTask({ taskId: $(this).attr("id") })
     .then(() => {
       $taskToDelete.hide();
@@ -233,11 +222,6 @@ $(document).on("click", ".deleteButton", function() {
 
     });
   });
->>>>>>> 7aac01b725725affebe51daa3fe21f03c7cbf818
-
-
-        });
-});
 
 // $(document).on('change', '#flexCheckDefault', function(event) {
 //     console.log(event.target.dataset.id)
