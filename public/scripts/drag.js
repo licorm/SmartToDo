@@ -56,8 +56,13 @@ $(() => {
         start: function( mousedown, ui ) {
           id = ui.item.children().eq(1)[0].id
           console.log(id)
-
+          $(".placeholder").slideDown();
         },
+        stop: function(event, ui) {
+
+          $(".placeholder").slideUp();
+        },
+
         receive: function(event, ui) {
           const category = event.target.dataset.category
           console.log(category)
@@ -66,10 +71,14 @@ $(() => {
             "category": category
           })
           countTasks();
+          $(".placeholder").slideUp();
         }
     })
 
+
   });
+
+
 
 
 

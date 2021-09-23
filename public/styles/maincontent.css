@@ -39,6 +39,7 @@
 }
 
 /* Task cards and lists */
+
 .list-group-item{
   display:flex;
   justify-content: space-between;
@@ -49,6 +50,10 @@
 .list-group-task{
   padding: 0;
   margin-bottom: 0;
+}
+.placeholder {
+  list-style: none;
+  color:lightgray;
 }
 h5{
   text-align: center;
