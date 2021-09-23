@@ -60,43 +60,40 @@ const addTask = (db) => {
           .then((data) => {
             res.json(data.rows[0]);
           })
-        } else {
-        yelp(queryText)
-        .then((category) => {
-          console.log('category', category)
-          if (category === 'restaurant') {
-            categoryString += 'eat at'
-            db.query(`${queryString}`, [user_id, category, queryText])
-            .then((data) => {
-              res.json(data.rows[0]);
-            })
-          } else {
-            dandelion(queryText)
-            .then((category) => {
-              if (category === 'book') {
-                db.query(`${queryString}`, [user_id, category, queryText])
-                .then((data) => {
-                res.json(data.rows[0]);
-                })
-              } else if (category === 'movie') {
-                db.query(`${queryString}`, [user_id, category, queryText])
-                .then((data) => {
-                res.json(data.rows[0]);
-                })
-              } 
-              if (category === 'nocat') {
-                db.query(`${queryString}`, [user_id, category, queryText])
-                .then((data) => {
-                  res.json(data.rows[0]);
-                })
-              } 
-            })
-          }
-
-        })
-      }
+        }
       })
-    }
+      yelp(queryText)
+      .then((category) => {
+        console.log('category', category)
+        if (category === 'restaurant') {
+          categoryString += 'eat at'
+          db.query(`${queryString}`, [user_id, category, queryText])
+          .then((data) => {
+            res.json(data.rows[0]);
+          })
+        }
+      })
+      dandelion(queryText)
+      .then((category) => {
+        if (category === 'book') {
+          db.query(`${queryString}`, [user_id, category, queryText])
+          .then((data) => {
+          res.json(data.rows[0]);
+          })
+        } else if (category === 'movie') {
+          db.query(`${queryString}`, [user_id, category, queryText])
+          .then((data) => {
+          res.json(data.rows[0]);
+          })
+        } 
+        if (category === 'nocat') {
+          db.query(`${queryString}`, [user_id, category, queryText])
+          .then((data) => {
+            res.json(data.rows[0]);
+          })
+        } 
+      })
+}
 
     // if (req.body.category === 'nocat') {
     //   categoryString += ``;
@@ -110,7 +107,7 @@ const addTask = (db) => {
     //   console.log(error);
     // })
 
-  })
+})
 
   return router;
 }
