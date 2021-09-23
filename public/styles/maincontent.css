@@ -18,7 +18,6 @@
   height: 100%;
   border-radius: 0.7em;
   background-color: #eef0f3;;
-
 }
 .userInfo:hover {
   box-shadow: 5px 3px 3px rgba(33,33,33,.2);
@@ -37,6 +36,9 @@
   text-align: center;
   padding:5%;
 }
+.list-group{
+  margin-top: 1.2em;
+}
 
 /* Task cards and lists */
 .list-group-item{
@@ -45,6 +47,8 @@
   align-items: center;
   font-family: 'Cuprum', sans-serif;
   font-size:1.2em;
+  padding: 0.4em;
+  padding-left: 5%;
 }
 .list-group-task{
   padding: 0;
@@ -52,6 +56,7 @@
 }
 h5{
   text-align: center;
+  font-size:1.2em;
 }
 .card-body, .card{
   width:300px;
@@ -80,14 +85,26 @@ h5{
 /* buttons styles ------ */
 .btn.btn-primary.mb-2{
   background-color:  #3F72AF;
+  margin: 3%;
 }
+
 .btn.btn-link{
   color:#033c79;
   font-size: 1em;
 }
+.btn-link:focus{
+ text-decoration: none; 
+}
+
 .btn.btn-link:hover {
    text-decoration: none;
   }
+.btn.btn-link.unfinTasks{
+  color:#3F72AF;
+}
+/* .btn.btn-link.unfinTasks:active{
+  text-decoration: none;
+} */
 
 .btn.btn-primary.mb-2:hover {
   box-shadow: 5px 3px 3px rgba(33,33,33,.2);
@@ -123,7 +140,7 @@ h5{
   }
 
 .stroked {
-  color: #909bb1;
+  color: #a3adc2;
   text-decoration: line-through;
   text-shadow: .3px .3px .3px #687386;
 }
@@ -142,6 +159,7 @@ h5{
     width: 90%;
     margin-bottom:10%;
     display:flex;
+    margin-left:0;
   }
   .listCards{
     display:flex;

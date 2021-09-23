@@ -1,7 +1,6 @@
 // The get route to insert tasks to task category from the database
-
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 const getTasks = (db) => {
   router.get("/", (req, res) => {
@@ -17,9 +16,7 @@ const getTasks = (db) => {
           .json({ error: err.message });
       });
   });
-
   return router;
-
 };
 
 module.exports = getTasks;

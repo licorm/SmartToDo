@@ -20,6 +20,7 @@
 }
 .navbar-brand{
   font-size: 3em;
+  padding-left:15px;
 }
 .expandButton{
   background-color: transparent;
@@ -30,8 +31,21 @@
   outline: none;
 }
 .expandButton:focus {
-
   outline: none;
+}
+.categoriesExpand{
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding:5px;
+}
+.titleBlock{
+  display:flex;
+  justify-content:  space-between;
+  align-items: center;
 }
 
 /* Footer styles--- */
@@ -47,7 +61,7 @@ footer{
   font-family: 'Cuprum', sans-serif;
 }
 
-/*  */
+
 
 
 

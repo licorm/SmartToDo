@@ -5,8 +5,11 @@ $(() => {
   const $submitForm = $(`
   <form id="addTask" class="createForm" method="POST" action="/">
         <label class="sr-only">Name</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Add Something" id="task" name="task">
-        <button type="submit" class="btn btn-primary mb-2">Add</button>
+        <input type="text" class="form-control mb-2 mr-sm-2 " placeholder="Add Something" id="task" name="task">
+        <div class="icon-container">
+      <i class="loader"></i>
+    </div>
+        <button type="submit" class="submit btn btn-primary mb-2">Add</button>
         </form>
     `)
    const results = [];
@@ -21,10 +24,12 @@ $(() => {
 
     const data = $(this).parents().children().find('#task').serialize();
     let queryText = data.slice(5)
+    
     submitTask({
       "task": queryText
     })
     .then(() => {
+      $('input').addClass('loader');
       return getTask();
      })
      .then((response) => {
@@ -55,6 +60,7 @@ $(() => {
 
     })
   .then(() => {
+    $('input').removeClass('loader');
     $("#addTask").trigger("reset");
   })
 
