@@ -70,30 +70,34 @@ $(() => {
           console.log(obj.completed)
           //change id so that it's not repeated
 
-          if (obj.completed === false) {
 
-            const taskName = $(`<li class="list-group-item"><div class="form-check" >
-    <input class="form-check-input stroked" type="checkbox"  id="flexCheckDefault" data-id=${obj.id} data-type=${obj.category_type}">
-    ${obj.name}
-  </div>
-  <button class="deleteButton" id ="${obj.id}"><i class="far fa-trash-alt"></i></li> </button>`);
+
+            const $taskName = $(`<li class="list-group-item"><div class="form-check" >
+            <input class="form-check-input stroked" type="checkbox"  id="flexCheckDefault" data-id=${obj.id} data-type=${obj.category_type}">
+               ${obj.name}
+                </div>
+            <button class="deleteButton" id ="${obj.id}"><i class="far fa-trash-alt"></i></li> </button>`);
+
             const type = obj.category_type;
+            if (obj.completed === false) {
+              $taskName.toggleClass('stroked');
+            }
 
 
             if (type === 'book') {
-              $('#books').append(taskName);
+              $('#books').append($taskName);
               countObj.book += 1;
             } else if (type === 'movie') {
-              $('#movie').append(taskName);
+              $('#movie').append($taskName);
               countObj.movie += 1;
             } else if (type === 'restaurant') {
-              $('#restaurants').append(taskName);
+              $('#restaurants').append($taskName);
               countObj.restaurant += 1;
             } else if (type === 'product') {
-              $('#products').append(taskName);
+              $('#products').append($taskName);
               countObj.product += 1;
             } else {
-              $('#nocat').append(taskName);
+              $('#nocat').append($taskName);
               countObj.nocat += 1;
             }
 
@@ -102,7 +106,7 @@ $(() => {
 
 
 
-          }
+
 
 
         }
@@ -120,9 +124,6 @@ $(() => {
 
   $(document).on('change', '#flexCheckDefault', function (event) {
     markComplete({ 'id': event.target.dataset.id })
-      .then(() => {
-        $(this).parents().eq(1);
-      })
 
 
     $(this).parent().toggleClass('stroked');
