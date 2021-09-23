@@ -60,6 +60,7 @@ const addTask = (db) => {
           .then((data) => {
             res.json(data.rows[0]);
           })
+
         }
       })
       yelp(queryText)
@@ -92,6 +93,7 @@ const addTask = (db) => {
             res.json(data.rows[0]);
           })
         } 
+
       })
 }
 
