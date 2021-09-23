@@ -35,7 +35,7 @@ const yelp = async function(queryText) {
 };
 
 const wolfram = async function(queryText) {
-  let results = "";
+  let results = "nocat";
 
   let response = await axios
     .get(`http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`)
@@ -55,7 +55,6 @@ const wolfram = async function(queryText) {
 
 
 const dandelion = async function(queryText) {
-  let results = "nocat";
   const dandelionResults = [];
   let response = await axios
     .get(`https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`)
