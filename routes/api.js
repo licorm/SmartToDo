@@ -7,7 +7,7 @@ const yelp = async function(queryText) {
   let results = "";
 
   let response = await axios
-  .get(`https://api.yelp.com/v3/businesses/search?term=${queryText}&location=calgary`,
+  .get(`https://api.yelp.com/v3/businesses/search?term=${queryText}&location=vancouver`,
     {
       headers: {
         Authorization: "Bearer nxBY2qRdQtx6tQSmpDNElKsuUINdEi_aI_4RDjjvqs3lbzGmgMem__btNaNnT2ruHn28UmFZ1W6Z9zrmjpw0rmyyaEuwGGMc-GSVXD6Q_ffREboy1bP4Po1S6AdGYXYx"

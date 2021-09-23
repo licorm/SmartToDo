@@ -4,6 +4,5 @@ CREATE TABLE tasks (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   category_type VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
-  description VARCHAR(255) NOT NULL,
   completed BOOLEAN NOT NULL DEFAULT false
 );
