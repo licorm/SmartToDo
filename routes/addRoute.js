@@ -1,5 +1,5 @@
 const express = require('express');
-const { yelp, wolfram, dandelion } = require('./api');
+const { yelp, wolfram } = require('./api');
 const router  = express.Router();
 
 const queryString = `INSERT INTO tasks(user_id, category_type, name)
@@ -33,33 +33,6 @@ const addTask = (db) => {
           res.json(data.rows[0]);
         });
     } else {
-      wolfram(queryText)
-        .then((category) => {
-          if (category === 'product') {
-            db.query(`${queryString}`, [user_id, category, queryText])
-              .then((data) => {
-                res.json(data.rows[0]);
-              });
-          } else if (category === 'movie') {
-            db.query(`${queryString}`, [user_id, category, queryText])
-              .then((data) => {
-                res.json(data.rows[0]);
-              });
-          } else if (category === 'book') {
-            db.query(`${queryString}`, [user_id, category, queryText])
-              .then((data) => {
-                res.json(data.rows[0]);
-              });
-          } else  if (category === 'nocat') {
-            db.query(`${queryString}`, [user_id, category, queryText])
-              .then((data) => {
-                res.json(data.rows[0]);
-              });
-          }
-        })
-        .catch((error) => {
-          console.log('Wolfram: Could not find what you were searching for.');
-        });
       yelp(queryText)
         .then((category) => {
           console.log('category', category);
@@ -68,27 +41,38 @@ const addTask = (db) => {
               .then((data) => {
                 res.json(data.rows[0]);
               });
+          } else {
+            wolfram(queryText)
+              .then((category) => {
+                if (category === 'product') {
+                  db.query(`${queryString}`, [user_id, category, queryText])
+                    .then((data) => {
+                      res.json(data.rows[0]);
+                    });
+                } else if (category === 'movie') {
+                  db.query(`${queryString}`, [user_id, category, queryText])
+                    .then((data) => {
+                      res.json(data.rows[0]);
+                    });
+                } else if (category === 'book') {
+                  db.query(`${queryString}`, [user_id, category, queryText])
+                    .then((data) => {
+                      res.json(data.rows[0]);
+                    });
+                } else  if (category === 'nocat') {
+                  db.query(`${queryString}`, [user_id, category, queryText])
+                    .then((data) => {
+                      res.json(data.rows[0]);
+                    });
+                }
+              })
+              .catch((error) => {
+                console.log('Wolfram: Could not find what you were searching for.');
+              });
           }
         })
         .catch((error) => {
           console.log('Yelp: Could not find what you were searching for.');
-        });
-      dandelion(queryText)
-        .then((category) => {
-          if (category === 'book') {
-            db.query(`${queryString}`, [user_id, category, queryText])
-              .then((data) => {
-                res.json(data.rows[0]);
-              });
-          } else if (category === 'movie') {
-            db.query(`${queryString}`, [user_id, category, queryText])
-              .then((data) => {
-                res.json(data.rows[0]);
-              });
-          }
-        })
-        .catch((error) => {
-          console.log('Dandelion: Could not find what you were searching for.');
         });
     }
   });

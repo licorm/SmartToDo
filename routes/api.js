@@ -41,7 +41,8 @@ const wolfram = async function(queryText) {
     .get(`http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`)
     .then((response) => {
       const dataType = response.data.queryresult.datatypes;
-      if (dataType === 'Book') {
+      console.log(dataType)
+      if (dataType === 'Book' || dataType.includes('Person')) {
         results = 'book';
       } else if (dataType === 'ExpandedFood' || dataType === 'ConsumerProductsPTE' || dataType.toLowerCase() === 'Product') {
         results = 'product';
@@ -53,38 +54,7 @@ const wolfram = async function(queryText) {
   return results;
 };
 
-
-const dandelion = async function(queryText) {
-  const dandelionResults = [];
-  let response = await axios
-    .get(`https://api.dandelion.eu/datatxt/nex/v1/?text=${queryText}&include=types%2Cabstract%2Ccategories&token=aa891623e9ff4f11997a4106ecace392`)
-    .then((response) => {
-      if (response.data.annotations.length > 0) {
-        let i = 0;
-        while (i < 6) {
-          dandelionResults.push(response.data.annotations[0].categories[i]);
-          i++;
-        }
-        if (dandelionResults.length > 0) {
-          for (const element of dandelionResults) {
-            if (element.includes('novel')) {
-              results = 'book';
-              return results;
-            }
-            if (element.includes('film') || element.includes('television')) {
-              results = 'movie';
-              return results;
-            }
-          }
-        }
-      }
-
-    });
-  return results;
-};
-
 module.exports = {
   yelp,
-  wolfram,
-  dandelion
+  wolfram
 };
