@@ -46,7 +46,7 @@ const wolfram = async function(queryText) {
     if (dataType === 'Book') {
       results = 'book';
     } else if (dataType=== 'ExpandedFood' || dataType === 'ConsumerProductsPTE' || dataType.toLowerCase() === 'Product') {
-      results = 'products'
+      results = 'product'
     } else if (dataType.toLowerCase().includes('movie') || dataType === 'TelevisionProgram') {
       results = 'movie'
     }
@@ -93,8 +93,8 @@ const dandelion = async function(queryText) {
   return results;
 }
 
-module.exports = { 
-  yelp, 
+module.exports = {
+  yelp,
   wolfram,
   dandelion
 }
