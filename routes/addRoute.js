@@ -42,7 +42,7 @@ const addTask = (db) => {
       wolfram(queryText)
       .then((category) => {
         console.log('category', category)
-        if (category === 'products') {
+        if (category === 'product') {
           categoryString += 'buy '
           db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
           .then((data) => {
@@ -83,13 +83,13 @@ const addTask = (db) => {
                 .then((data) => {
                 res.json(data.rows[0]);
                 })
-              } 
+              }
               if (category === 'nocat') {
                 db.query(`${queryString}`, [user_id, category, queryText, `${categoryString}${queryText}`])
                 .then((data) => {
                   res.json(data.rows[0]);
                 })
-              } 
+              }
             })
           }
 
