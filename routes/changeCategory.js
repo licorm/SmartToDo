@@ -7,8 +7,9 @@ const queryString = `UPDATE tasks
                      WHERE id = $2`;
 const changeCategory = (db) => {
   router.post('/', (req, res) => {
-   console.log(req.body.id)
-   const values = [req.body.id];
+   console.log(req.body)
+   values = [req.body.category, req.body.id]
+
 
     db.query(`${queryString}`, values)
     .then((response) => {
