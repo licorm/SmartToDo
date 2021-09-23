@@ -50,6 +50,11 @@ const addTask = (db) => {
               .then((data) => {
                 res.json(data.rows[0]);
               });
+          } else  if (category === 'nocat') {
+            db.query(`${queryString}`, [user_id, category, queryText])
+              .then((data) => {
+                res.json(data.rows[0]);
+              });
           }
         })
         .catch((error) => {
@@ -76,12 +81,6 @@ const addTask = (db) => {
                 res.json(data.rows[0]);
               });
           } else if (category === 'movie') {
-            db.query(`${queryString}`, [user_id, category, queryText])
-              .then((data) => {
-                res.json(data.rows[0]);
-              });
-          }
-          if (category === 'nocat') {
             db.query(`${queryString}`, [user_id, category, queryText])
               .then((data) => {
                 res.json(data.rows[0]);
