@@ -18,10 +18,10 @@
   height: 100%;
   border-radius: 0.7em;
   background-color: #eef0f3;;
-  
+
 }
 .userInfo:hover {
-  box-shadow: 5px 3px 3px rgba(33,33,33,.2); 
+  box-shadow: 5px 3px 3px rgba(33,33,33,.2);
 }
 .unfinishedTasks{
   width:100%;
@@ -46,6 +46,10 @@
   font-family: 'Cuprum', sans-serif;
   font-size:1.2em;
 }
+.list-group-task{
+  padding: 0;
+  margin-bottom: 0;
+}
 h5{
   text-align: center;
 }
@@ -59,15 +63,15 @@ h5{
   font-size: 1em;
 }
 .card-header:hover {
-  box-shadow: 5px 3px 3px rgba(33,33,33,.2); 
+  box-shadow: 5px 3px 3px rgba(33,33,33,.2);
 }
 .card-header{
-  background-color: #eef0f3; 
+  background-color: #eef0f3;
 }
 
 /* Checkboxes----- */
 .form-check-input{
-  position: static; 
+  position: static;
   margin-top: .3rem;
   margin-left: -1.75rem;
   margin-right: 0.3em;
@@ -75,18 +79,18 @@ h5{
 
 /* buttons styles ------ */
 .btn.btn-primary.mb-2{
-  background-color:  #3F72AF; 
+  background-color:  #3F72AF;
 }
 .btn.btn-link{
   color:#033c79;
   font-size: 1em;
 }
 .btn.btn-link:hover {
-   text-decoration: none; 
+   text-decoration: none;
   }
 
 .btn.btn-primary.mb-2:hover {
-  box-shadow: 5px 3px 3px rgba(33,33,33,.2); 
+  box-shadow: 5px 3px 3px rgba(33,33,33,.2);
 }
 
 /* Icons styles------ */
@@ -99,7 +103,7 @@ h5{
   margin-left: 3px;
 }
 .far.fa-trash-alt:hover {
-  color:red; 
+  color:red;
 }
 .fa-plus:hover{
   color:red;
@@ -112,7 +116,7 @@ h5{
     cursor: pointer;
     overflow: hidden;
     outline: none;
-  
+
   }
 .deleteButton:focus {
     outline: none;
