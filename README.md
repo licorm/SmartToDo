@@ -3,7 +3,6 @@ Smart To Do List
 A web app that auto categorizes tasks input by user into one of 5 categories. Type in the task that you want to accomplish and watch it appear in books, restaurants, products, movies or no category. If you want to choose the category yourself, just add read, watch, buy or eat to your task input. Wrong category? Just drag and drop the task into the desired category! Tick items off the list or delete a task you no longer want to accomplish. Changes are saved even after page refresh.
 
 ## Media
-!["Video of app"](https://www.youtube.com/watch?v=0VivsXqSfKw&ab_channel=PuggyG)
 !["Main page"](https://github.com/licorm/SmartToDo/blob/master/docs/searchopen.png)
 !["Having both the search and categories open"](https://github.com/licorm/SmartToDo/blob/master/docs/fullView.png)
 !["Being able to drag from on category to another"](https://github.com/licorm/SmartToDo/blob/master/docs/drag.png)
