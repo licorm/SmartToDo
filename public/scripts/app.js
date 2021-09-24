@@ -4,13 +4,6 @@ $(() => {
     $('.userInfo').toggle('slow');
   });
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> master
   const loadTasks = function() {
     getTask()
       .then(function(data) {
@@ -101,26 +94,4 @@ $(() => {
         countTasks();
       });
   });
-<<<<<<< HEAD
-
-  $(document).on('click', 'submit', function() {
-    $('input').addClass('loader');
-    $.ajax({
-      method: "POST",
-      url: "/",
-      success: function() {
-
-        $('input').removeClass('loader');;
-    }
-      
-
-
-    })
-
-  });
-
 });
-
-=======
-});
->>>>>>> master
