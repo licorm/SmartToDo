@@ -42,7 +42,7 @@ const wolfram = async function(queryText) {
     .then((response) => {
       const dataType = response.data.queryresult.datatypes;
       console.log(dataType)
-      if (dataType === 'Book' || dataType.includes('Person')) {
+      if (dataType === 'Book' || dataType.includes('Person') || dataType.includes('FictionalCharacter')) {
         results = 'book';
       } else if (dataType === 'ExpandedFood' || dataType === 'ConsumerProductsPTE' || dataType.toLowerCase() === 'Product') {
         results = 'product';
