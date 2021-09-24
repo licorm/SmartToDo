@@ -6,7 +6,6 @@ const loginRouter = (db) => {
   router.get('/:id', (req, res) => {
     db.query("SELECT * FROM users WHERE id = $1", [req.params.id])
       .then((response) => {
-        console.log(response.rows);
         req.session.user_id = req.params.id;
         res.redirect('/');
       })

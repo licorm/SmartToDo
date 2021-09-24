@@ -1,7 +1,6 @@
 const axios = require('axios');
 
 const yelp = async function(queryText) {
-  console.log('queryText', queryText);
 
   let results = "";
 
@@ -41,7 +40,6 @@ const wolfram = async function(queryText) {
     .get(`http://api.wolframalpha.com/v2/query?appid=54X4Q5-GJT5YVU638&output=json&input=${queryText}`)
     .then((response) => {
       const dataType = response.data.queryresult.datatypes;
-      console.log(dataType)
       if (dataType === 'Book' || dataType.includes('Person') || dataType.includes('FictionalCharacter')) {
         results = 'book';
       } else if (dataType === 'ExpandedFood' || dataType === 'ConsumerProductsPTE' || dataType.toLowerCase() === 'Product') {

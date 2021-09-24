@@ -6,11 +6,8 @@ const queryString = `INSERT INTO tasks(user_id, category_type, name)
                     VALUES ($1, $2, $3) RETURNING *`;
 const addTask = (db) => {
   router.post('/', (req, res) => {
-    console.log('task', req.body);
-    console.log('user_id', 2);
     const user_id = 2;
     const queryText = decodeURI(req.body.task);
-    console.log('queryText', queryText);
     if (req.body.task.includes('watch')) {
       db.query(`${queryString}`, [user_id, 'movie', queryText])
         .then((data) => {
@@ -35,7 +32,6 @@ const addTask = (db) => {
     } else {
       yelp(queryText)
         .then((category) => {
-          console.log('category', category);
           if (category === 'restaurant') {
             db.query(`${queryString}`, [user_id, category, queryText])
               .then((data) => {

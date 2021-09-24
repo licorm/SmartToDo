@@ -8,7 +8,6 @@ $(() => {
     getTask()
       .then(function(data) {
         for (const obj of data) {
-          console.log(obj.completed);
 
           const $taskName = $(`<li class="list-group-item"><div class="form-check" >
             <input class="form-check-input stroked" type="checkbox"  id="flexCheckDefault" data-id=${obj.id} data-type=${obj.category_type}>
@@ -53,7 +52,6 @@ $(() => {
         let nocCount = 0;
         for (const task of data) {
           const type = task.category_type;
-          console.log(type);
           if (task.completed === false) {
             if (type === 'book') {
               booCount += 1;
