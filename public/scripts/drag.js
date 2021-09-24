@@ -71,7 +71,7 @@ $(() => {
         changeCat({
           "id": id,
           "category": category
-        });
+        })
         //then recount the tasks
         countTasks();
         //slide up placeholder
